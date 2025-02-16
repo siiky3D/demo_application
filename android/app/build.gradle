@@ -51,8 +51,8 @@ android {
         applicationId "com.sikky3.org.demo_app_temp"
         // You can update the following values to match your application needs.
         // For more information, see: https://docs.flutter.dev/deployment/android#reviewing-the-gradle-build-configuration.
-        minSdkVersion flutter.minSdkVersion
-        targetSdkVersion flutter.targetSdkVersion
+        minSdkVersion project.hasProperty("customMinSdk") ? project.property("customMinSdk") as Integer : flutter.minSdkVersion
+        targetSdkVersion project.hasProperty("customTargetSdk") ? project.property("customTargetSdk") as Integer : flutter.targetSdkVersion
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
     }
