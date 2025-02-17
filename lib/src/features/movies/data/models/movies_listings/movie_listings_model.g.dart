@@ -8,12 +8,12 @@ part of 'movie_listings_model.dart';
 
 MovieListingsModel _$MovieListingsModelFromJson(Map<String, dynamic> json) =>
     MovieListingsModel(
-      page: json['page'] as int?,
+      page: (json['page'] as num?)?.toInt(),
       movies: (json['results'] as List<dynamic>?)
           ?.map((e) => MovieDetailModel.fromJson(e as Map<String, dynamic>))
           .toList(),
-      totalPages: json['total_pages'] as int?,
-      totalResults: json['total_results'] as int?,
+      totalPages: (json['total_pages'] as num?)?.toInt(),
+      totalResults: (json['total_results'] as num?)?.toInt(),
     );
 
 Map<String, dynamic> _$MovieListingsModelToJson(MovieListingsModel instance) =>
