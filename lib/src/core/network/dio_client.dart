@@ -1,14 +1,17 @@
 import 'dart:developer';
 import 'dart:io';
 
-import 'package:demo_app_temp/src/core/constants/app_constants.dart';
+import 'package:demo_app_temp/src/core/config/constants/app_constants.dart';
 import 'package:dio/dio.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 
 /// A class that provides a wrapper around the Dio HTTP client library.
 ///
-/// This class provides methods for making HTTP requests such as GET, POST, PUT, PATCH, and DELETE.
-/// It also sets up the base URL, headers, timeouts, response type, and interceptors for the Dio client.
+/// This class provides methods for making HTTP requests such as GET, POST, PUT,
+/// PATCH, and DELETE.
+///
+/// It also sets up the base URL, headers, timeouts, response type, and
+/// interceptors for the Dio client.
 class DioClient {
   DioClient() {
     _dio = Dio();
@@ -20,7 +23,7 @@ class DioClient {
         HttpHeaders.authorizationHeader: 'Bearer ${AppConstants.apiToken}',
       }
       ..options.connectTimeout = const Duration(milliseconds: 15000)
-      ..options.receiveTimeout = const Duration(milliseconds: 15000)
+      ..options.receiveTimeout = const Duration(milliseconds: 13000)
       ..options.responseType = ResponseType.json
       ..interceptors.add(
         PrettyDioLogger(

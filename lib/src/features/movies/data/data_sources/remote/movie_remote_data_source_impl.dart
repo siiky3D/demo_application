@@ -1,4 +1,4 @@
-import 'package:demo_app_temp/src/core/constants/url_constants.dart';
+import 'package:demo_app_temp/src/core/config/constants/url_constants.dart';
 import 'package:demo_app_temp/src/core/network/dio_client.dart';
 import 'package:demo_app_temp/src/features/movies/data/data_sources/remote/movie_remote_data_source.dart';
 import 'package:demo_app_temp/src/features/movies/data/models/movie_credit/movie_credit_model.dart';

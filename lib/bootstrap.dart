@@ -1,10 +1,12 @@
 import 'dart:async';
 import 'dart:developer';
 
+import 'package:demo_app_temp/src/app.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:hydrated_bloc/hydrated_bloc.dart';
 import 'package:path_provider/path_provider.dart';
+// import 'package:path_provider/path_provider.dart';
 
 class AppBlocObserver extends BlocObserver {
   const AppBlocObserver();
@@ -27,14 +29,23 @@ Future<void> bootstrap(FutureOr<Widget> Function() builder) async {
     log(details.exceptionAsString(), stackTrace: details.stack);
   };
 
+  /// Ensure Flutter initialized
   WidgetsFlutterBinding.ensureInitialized();
+
+  /// Initialize Bloc Observer
   Bloc.observer = const AppBlocObserver();
+
+  /// Load .env file
   await dotenv.load();
+
+  /// Initialize Injection
+  await init();
 
   final directory = HydratedStorageDirectory(
     (await getApplicationDocumentsDirectory()).path,
   );
 
+  /// Initialize HydratedBloc Storage
   HydratedBloc.storage = await HydratedStorage.build(
     storageDirectory: directory,
   );
