@@ -1,38 +1,48 @@
-import 'package:demo_app_temp/src/features/splash/presentation/pages/splash_screen.dart';
-import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
+import 'package:auto_route/auto_route.dart';
+import 'package:demo_app_temp/src/core/config/constants/path_constants.dart';
 
-enum Routes {
-  splash,
-  login,
-  register,
-  onboarding,
-  selectedAudience,
-  home,
-}
+import 'package:demo_app_temp/src/core/config/routes/app_router.gr.dart';
 
-class AppRouter {
+@AutoRouterConfig(replaceInRouteName: 'Screen|Widget,Route')
+final class AppRouter extends $AppRouter {
   AppRouter();
 
-  GoRouter get router {
-    return GoRouter(
-      initialLocation: '/',
-      debugLogDiagnostics: true,
-      redirect: (context, state) {
-        return null;
-      },
-      routes: [
-        GoRoute(
-          path: '/',
-          name: Routes.splash.name,
-          pageBuilder: (context, state) => const MaterialPage(
-            child: SplashScreen(),
-          ),
+  @override
+  List<AutoRoute> get routes => [
+        AutoRoute(
+          page: SplashRoute.page,
+          path: PathConstants.splash,
+          initial: true,
         ),
-        // StatefulShellRoute.indexedStack(
-        //   branches: [],
-        // ),
-      ],
-    );
-  }
+        AutoRoute(
+          page: LoginRoute.page,
+          path: PathConstants.login,
+        ),
+        AutoRoute(
+          page: ProfileSelectionRoute.page,
+          path: PathConstants.profileSelection,
+        ),
+        AutoRoute(
+          page: MainRoute.page,
+          children: [
+            AutoRoute(
+              page: HomeRoute.page,
+              path: PathConstants.home,
+              initial: true,
+            ),
+            AutoRoute(
+              page: GamesRoute.page,
+              path: PathConstants.games,
+            ),
+            AutoRoute(
+              page: NewAndHotRoute.page,
+              path: PathConstants.newAndHot,
+            ),
+            AutoRoute(
+              page: ProfileManagementRoute.page,
+              path: PathConstants.profileManagement,
+            ),
+          ],
+        ),
+      ];
 }
