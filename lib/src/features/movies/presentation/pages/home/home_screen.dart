@@ -1,6 +1,8 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:demo_app_temp/src/core/common_widgets/buttons/retry_button.dart';
+import 'package:demo_app_temp/src/core/common_widgets/card/movie_card.dart';
 import 'package:demo_app_temp/src/core/common_widgets/indicator/base_indicator.dart';
+import 'package:demo_app_temp/src/core/config/routes/app_router.gr.dart';
 import 'package:demo_app_temp/src/features/movies/domain/entities/movie_detail/movie_detail_entity.dart';
 import 'package:demo_app_temp/src/features/movies/presentation/states/movie/get_popular_movies/bloc/get_popular_movies_bloc.dart';
 import 'package:demo_app_temp/src/features/movies/presentation/states/movie/get_top_rated_movies/get_top_rated_movies_bloc.dart';
@@ -9,11 +11,11 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-part '../_widgets/movies/movie_listing_widget.dart';
+part '../../_widgets/movies/movie_listing_widget.dart';
 
 @RoutePage()
-class MoviesListingScreen extends HookWidget {
-  const MoviesListingScreen({super.key});
+class HomeScreen extends HookWidget {
+  const HomeScreen({super.key});
 
   @override
   Widget build(BuildContext context) {

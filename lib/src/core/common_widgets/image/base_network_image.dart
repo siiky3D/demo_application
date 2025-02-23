@@ -7,7 +7,7 @@ class BaseNetworkImage extends StatelessWidget {
   const BaseNetworkImage(this.url, {super.key, this.hasRadius = true});
 
   BaseNetworkImage.originalImageSize(String? targetUrl,
-      {super.key, this.hasRadius = true})
+      {super.key, this.hasRadius = true,})
       : url = ImageConstants.originalImage(targetUrl);
 
   final String? url;

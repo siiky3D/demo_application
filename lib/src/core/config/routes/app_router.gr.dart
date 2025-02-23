@@ -17,16 +17,19 @@ import 'package:demo_app_temp/src/features/authentication/presentation/pages/pro
     as _i8;
 import 'package:demo_app_temp/src/features/games/presentation/pages/game_screen.dart'
     as _i1;
-import 'package:demo_app_temp/src/features/main/presentation/home/home_screen.dart'
-    as _i2;
 import 'package:demo_app_temp/src/features/main/presentation/main/main_screen.dart'
     as _i4;
-import 'package:demo_app_temp/src/features/movies/presentation/pages/movies_listing_screen.dart'
+import 'package:demo_app_temp/src/features/movies/domain/entities/movie_detail/movie_detail_entity.dart'
+    as _i11;
+import 'package:demo_app_temp/src/features/movies/presentation/pages/home/home_screen.dart'
+    as _i2;
+import 'package:demo_app_temp/src/features/movies/presentation/pages/movie_detail_screen.dart'
     as _i5;
 import 'package:demo_app_temp/src/features/movies/presentation/pages/new_and_hot_screen.dart'
     as _i6;
 import 'package:demo_app_temp/src/features/splash/presentation/pages/splash_screen.dart'
     as _i9;
+import 'package:flutter/material.dart' as _i12;
 
 abstract class $AppRouter extends _i10.RootStackRouter {
   $AppRouter({super.navigatorKey});
@@ -57,10 +60,15 @@ abstract class $AppRouter extends _i10.RootStackRouter {
         child: const _i4.MainScreen(),
       );
     },
-    MoviesListingRoute.name: (routeData) {
+    MovieDetailRoute.name: (routeData) {
+      final args = routeData.argsAs<MovieDetailRouteArgs>();
       return _i10.AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const _i5.MoviesListingScreen(),
+        child: _i5.MovieDetailScreen(
+          movieDetail: args.movieDetail,
+          heroTag: args.heroTag,
+          key: args.key,
+        ),
       );
     },
     NewAndHotRoute.name: (routeData) {
@@ -147,17 +155,46 @@ class MainRoute extends _i10.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i5.MoviesListingScreen]
-class MoviesListingRoute extends _i10.PageRouteInfo<void> {
-  const MoviesListingRoute({List<_i10.PageRouteInfo>? children})
-      : super(
-          MoviesListingRoute.name,
+/// [_i5.MovieDetailScreen]
+class MovieDetailRoute extends _i10.PageRouteInfo<MovieDetailRouteArgs> {
+  MovieDetailRoute({
+    required _i11.MovieDetailEntity? movieDetail,
+    required Object heroTag,
+    _i12.Key? key,
+    List<_i10.PageRouteInfo>? children,
+  }) : super(
+          MovieDetailRoute.name,
+          args: MovieDetailRouteArgs(
+            movieDetail: movieDetail,
+            heroTag: heroTag,
+            key: key,
+          ),
           initialChildren: children,
         );
 
-  static const String name = 'MoviesListingRoute';
+  static const String name = 'MovieDetailRoute';
 
-  static const _i10.PageInfo<void> page = _i10.PageInfo<void>(name);
+  static const _i10.PageInfo<MovieDetailRouteArgs> page =
+      _i10.PageInfo<MovieDetailRouteArgs>(name);
+}
+
+class MovieDetailRouteArgs {
+  const MovieDetailRouteArgs({
+    required this.movieDetail,
+    required this.heroTag,
+    this.key,
+  });
+
+  final _i11.MovieDetailEntity? movieDetail;
+
+  final Object heroTag;
+
+  final _i12.Key? key;
+
+  @override
+  String toString() {
+    return 'MovieDetailRouteArgs{movieDetail: $movieDetail, heroTag: $heroTag, key: $key}';
+  }
 }
 
 /// generated route for

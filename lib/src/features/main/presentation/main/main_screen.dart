@@ -54,7 +54,7 @@ class MainScreen extends StatelessWidget {
           );
         },
         routes: const [
-          MoviesListingRoute(),
+          HomeRoute(),
           GamesRoute(),
           NewAndHotRoute(),
           ProfileSelectionRoute(),

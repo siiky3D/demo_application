@@ -19,7 +19,7 @@ class MovieRepositoryImpl implements MovieRepository {
   //* REMOTE
   @override
   Future<Either<NetworkException, MovieListingsEntity>> getPopularMovies(
-      {required int page}) async {
+      {required int page,}) async {
     try {
       final result = await _movieRemoteDataSource.getPopularMovies(page: page);
 
@@ -31,7 +31,7 @@ class MovieRepositoryImpl implements MovieRepository {
 
   @override
   Future<Either<NetworkException, MovieListingsEntity>> getTopRatedMovies(
-      {required int page}) async {
+      {required int page,}) async {
     try {
       final result = await _movieRemoteDataSource.getTopRatedMovies(page: page);
 
@@ -43,7 +43,7 @@ class MovieRepositoryImpl implements MovieRepository {
 
   @override
   Future<Either<NetworkException, MovieCreditEntity>> getMovieCredits(
-      {required int movieId}) async {
+      {required int movieId,}) async {
     try {
       final result =
           await _movieRemoteDataSource.getMovieCredits(movieId: movieId);
@@ -69,7 +69,7 @@ class MovieRepositoryImpl implements MovieRepository {
 
   @override
   Future<Either<DatabaseException, void>> saveMovieDetails(
-      {required MovieDetailEntity? movieDetailEntity}) async {
+      {required MovieDetailEntity? movieDetailEntity,}) async {
     try {
       final result = await _movieLocalDataSource.saveMovieDetail(
         movieDetailCollection:
@@ -84,7 +84,7 @@ class MovieRepositoryImpl implements MovieRepository {
 
   @override
   Future<Either<DatabaseException, void>> deleteMovieDetail(
-      {required int? movieId}) async {
+      {required int? movieId,}) async {
     try {
       final result =
           await _movieLocalDataSource.deleteMovieDetail(movieId: movieId);
@@ -97,7 +97,7 @@ class MovieRepositoryImpl implements MovieRepository {
 
   @override
   Future<Either<DatabaseException, bool>> isSavedMovieDetail(
-      {required int? movieId}) async {
+      {required int? movieId,}) async {
     try {
       final result =
           await _movieLocalDataSource.isSavedMovieDetail(movieId: movieId);

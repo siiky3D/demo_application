@@ -38,12 +38,12 @@ class MovieLocalDataSourceImpl implements MovieLocalDataSource {
   /// Saves the given [movieDetailCollection] to the local database.
   @override
   Future<void> saveMovieDetail(
-      {required MovieDetailCollection movieDetailCollection}) async {
+      {required MovieDetailCollection movieDetailCollection,}) async {
     try {
       final db = localDatabase.db;
 
       await db.writeTxn(
-          () async => db.movieDetailCollections.put(movieDetailCollection));
+          () async => db.movieDetailCollections.put(movieDetailCollection),);
     } catch (_) {
       rethrow;
     }

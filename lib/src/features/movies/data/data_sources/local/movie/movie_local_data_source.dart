@@ -1,4 +1,4 @@
-import '../_collections/movie_detail/movie_detail_collection.dart';
+import 'package:demo_app_temp/src/features/movies/data/data_sources/local/_collections/movie_detail/movie_detail_collection.dart';
 
 abstract class MovieLocalDataSource {
   const MovieLocalDataSource();

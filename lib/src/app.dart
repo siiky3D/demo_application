@@ -1,4 +1,4 @@
-import 'package:auto_route/auto_route.dart';
+import 'package:demo_app_temp/src/core/config/routes/app_route_observer.dart';
 import 'package:demo_app_temp/src/core/config/routes/app_router.dart';
 import 'package:demo_app_temp/src/core/database/local_database.dart';
 import 'package:demo_app_temp/src/core/l10n/l10n.dart';
@@ -36,8 +36,12 @@ class App extends StatelessWidget {
         builder: (context, child) {
           return BlocBuilder<ThemeCubit, ThemeState>(
             builder: (context, themeState) {
+              final observer = AppRouteObserver();
+
               return MaterialApp.router(
-                routerDelegate: AutoRouterDelegate(router),
+                routerConfig: router.config(
+                  navigatorObservers: () => [observer],
+                ),
                 restorationScopeId: 'app',
                 themeMode: themeState.themeMode,
                 theme: AppTheme.lightTheme,

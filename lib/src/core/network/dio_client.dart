@@ -25,11 +25,32 @@ class DioClient {
       ..options.connectTimeout = const Duration(milliseconds: 15000)
       ..options.receiveTimeout = const Duration(milliseconds: 13000)
       ..options.responseType = ResponseType.json
-      ..interceptors.add(
-        PrettyDioLogger(
-          compact: false,
-          logPrint: (object) => log(object.toString(), name: 'TMDB API'),
-        ),
+      ..interceptors.addAll(
+        [
+          PrettyDioLogger(
+            compact: false,
+            logPrint: (object) => log(object.toString(), name: 'TMDB API'),
+          ),
+          InterceptorsWrapper(
+            onRequest: (options, handler) async {
+              // Check for token refresh logic
+              // If expired, refresh token
+              return handler.next(options);
+            },
+            onResponse: (response, handler) {
+              if (response.statusCode == 401) {
+                // Handle unauthorized - Refresh token or re-login
+              }
+              return handler.next(response);
+            },
+            onError: (DioException e, handler) {
+              if (e.response?.statusCode == 500) {
+                // Retry logic for 500 error
+              }
+              return handler.next(e);
+            },
+          ),
+        ],
       );
   }
 

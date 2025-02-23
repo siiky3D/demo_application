@@ -50,7 +50,7 @@ class MovieRemoteDataSourceImpl implements MovieRemoteDataSource {
   Future<MovieCreditModel> getMovieCredits({required int movieId}) async {
     try {
       final response = await _dioClient.get(UrlConstants.movieCredits
-          .replaceAll('{movie_id}', movieId.toString()));
+          .replaceAll('{movie_id}', movieId.toString()),);
 
       final model =
           MovieCreditModel.fromJson(response.data as Map<String, dynamic>);

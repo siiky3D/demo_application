@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class RetryButton extends StatelessWidget {
-  const RetryButton({super.key, required this.retryAction, required this.text});
+  const RetryButton({required this.retryAction, required this.text, super.key});
 
   final void Function() retryAction;
   final String text;
@@ -18,7 +18,7 @@ class RetryButton extends StatelessWidget {
         Expanded(
           child: Center(
             child: TextButton(
-              onPressed: () => retryAction.call(),
+              onPressed: retryAction.call,
               child: const Text('Retry'),
             ),
           ),

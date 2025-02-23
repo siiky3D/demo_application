@@ -53,7 +53,7 @@ void main() {
         () async {
       // Arrange
       when(mockDioClient.get(UrlConstants.popularMovies,
-          queryParameters: {'page': page})).thenAnswer(
+          queryParameters: {'page': page},),).thenAnswer(
         (_) async => response,
       );
 
@@ -69,7 +69,7 @@ void main() {
         () async {
       // Arrange
       when(mockDioClient.get(UrlConstants.popularMovies,
-          queryParameters: {'page': page})).thenThrow(Exception());
+          queryParameters: {'page': page},),).thenThrow(Exception());
 
       // Act
       final call = actorRemoteDataSource.getPopularMovies;
@@ -98,7 +98,7 @@ void main() {
         () async {
       // Arrange
       when(mockDioClient.get(UrlConstants.topRatedMovies,
-          queryParameters: {'page': page})).thenAnswer(
+          queryParameters: {'page': page},),).thenAnswer(
         (_) async => response,
       );
 
@@ -114,7 +114,7 @@ void main() {
         () async {
       // Arrange
       when(mockDioClient.get(UrlConstants.topRatedMovies,
-          queryParameters: {'page': page})).thenThrow(Exception());
+          queryParameters: {'page': page},),).thenThrow(Exception());
 
       // Act
       final call = actorRemoteDataSource.getTopRatedMovies;
@@ -134,7 +134,7 @@ void main() {
         data: movieCreditJson,
         requestOptions: RequestOptions(
             path: UrlConstants.movieCredits
-                .replaceAll('{movie_id}', movieId.toString())),
+                .replaceAll('{movie_id}', movieId.toString()),),
       );
     });
 

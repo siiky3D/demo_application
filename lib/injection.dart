@@ -12,14 +12,14 @@ Future<void> init() async {
 
         //* Data Sources
         ..registerLazySingleton<MovieRemoteDataSource>(
-            () => MovieRemoteDataSourceImpl(injector()))
+            () => MovieRemoteDataSourceImpl(injector()),)
         ..registerLazySingleton<MovieLocalDataSource>(
-            () => MovieLocalDataSourceImpl(injector<LocalDatabase>()))
+            () => MovieLocalDataSourceImpl(injector<LocalDatabase>()),)
         // ..registerLazySingleton<ActorRemoteDataSource>(() => ActorRemoteDataSourceImpl(injector()))
 
         //* Repositories
         ..registerLazySingleton<MovieRepository>(
-            () => MovieRepositoryImpl(injector(), injector()))
+            () => MovieRepositoryImpl(injector(), injector()),)
         // ..registerLazySingleton<ActorRepository>(() => ActorRepositoryImpl(injector()))
 
         //* Usecases
@@ -29,9 +29,9 @@ Future<void> init() async {
         //* Cubits
         ..registerLazySingleton<ThemeCubit>(ThemeCubit.new)
         ..registerLazySingleton<GetPopularMoviesBloc>(
-            () => GetPopularMoviesBloc(injector()))
+            () => GetPopularMoviesBloc(injector()),)
         ..registerLazySingleton<GetTopRatedMoviesBloc>(
-            () => GetTopRatedMoviesBloc(injector()))
+            () => GetTopRatedMoviesBloc(injector()),)
       // ..registerLazySingleton<GetSavedMoviesCubit>(() => GetSavedMoviesCubit(injector()))
       // ..registerFactory<ToggleBookmarkCubit>(() => ToggleBookmarkCubit(injector()))
       // ..registerFactory<GetMovieCreditsCubit>(() => GetMovieCreditsCubit(injector()))

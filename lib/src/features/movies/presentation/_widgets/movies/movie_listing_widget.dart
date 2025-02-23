@@ -1,4 +1,4 @@
-part of '../../pages/movies_listing_screen.dart';
+part of '../../pages/home/home_screen.dart';
 
 class _MovieListingWidget extends HookWidget {
   const _MovieListingWidget({
@@ -57,13 +57,12 @@ class _MovieListingWidget extends HookWidget {
           ),
           itemBuilder: (_, index) {
             final tag = UniqueKey();
-            return Text('data');
-            //TODO: Uncomment this code
-            // return GestureDetector(
-            //   onTap: () => context.router.push(
-            //       MovieDetailRoute(movieDetail: movies?[index], heroTag: tag)),
-            //   child: Hero(tag: tag, child: MovieCard(movie: movies?[index])),
-            // );
+            return GestureDetector(
+              onTap: () => context.router.push(
+                MovieDetailRoute(movieDetail: movies?[index], heroTag: tag),
+              ),
+              child: Hero(tag: tag, child: MovieCard(movie: movies?[index])),
+            );
           },
         ),
         if (!hasReachedMax) const BaseIndicator(),

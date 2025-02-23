@@ -39,7 +39,7 @@ class GetPopularMoviesBloc
       (success) {
         _page++;
         _movieList.addAll(
-          success.movies?.where((movie) => _movieList.contains(movie)) ?? [],
+          success.movies?.where(_movieList.contains) ?? [],
         );
 
         if ((success.movies?.length ?? 0) < 20) {

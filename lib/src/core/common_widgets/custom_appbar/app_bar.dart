@@ -77,7 +77,6 @@ class AppExpandableSliverAppBar extends SliverAppBar {
 class AppMovingTitleSliverAppBar extends SliverAppBar {
   AppMovingTitleSliverAppBar({
     super.key,
-    GlobalKey? appBarKey,
     String title = 'Pokedex',
     double height = kToolbarHeight + 48,
     double expandedFontSize = 30,
@@ -116,7 +115,7 @@ class AppMovingTitleSliverAppBar extends SliverAppBar {
                   MediaQuery.sizeOf(context).width / 2 - textWidth / 2 - startX;
               final dx = startX + endX - endX * percent;
 
-              return Container(
+              return ColoredBox(
                 color:
                     //TODO: Fix this
                     // context.colors.background.withOpacity(0.8 - percent * 0.8),

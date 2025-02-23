@@ -24,7 +24,7 @@ class LocalDatabase {
 
     final directory = await getApplicationDocumentsDirectory();
     _isar = await Isar.open([MovieDetailCollectionSchema],
-        directory: directory.path);
+        directory: directory.path,);
 
     _isInitialized = true;
   }

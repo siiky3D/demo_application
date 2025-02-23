@@ -8,8 +8,6 @@ part 'crew_model.g.dart';
 @JsonSerializable()
 class CrewModel extends Equatable
     with EntityConvertible<CrewModel, CrewEntity> {
-  factory CrewModel.fromJson(Map<String, dynamic> json) =>
-      _$CrewModelFromJson(json);
 
   const CrewModel({
     this.adult,
@@ -24,6 +22,8 @@ class CrewModel extends Equatable
     this.department,
     this.job,
   });
+  factory CrewModel.fromJson(Map<String, dynamic> json) =>
+      _$CrewModelFromJson(json);
   final bool? adult;
   final int? gender;
   final int? id;

@@ -19,7 +19,7 @@ class _SplashScreenState extends State<SplashScreen> {
     super.initState();
 
     Timer(const Duration(seconds: 3), () {
-      context.router.push(const MoviesListingRoute());
+      context.router.replace(const MainRoute());
     });
   }
 

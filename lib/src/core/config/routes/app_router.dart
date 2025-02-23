@@ -2,6 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:demo_app_temp/src/core/config/constants/path_constants.dart';
 
 import 'package:demo_app_temp/src/core/config/routes/app_router.gr.dart';
+import 'package:flutter/material.dart';
 
 @AutoRouterConfig(replaceInRouteName: 'Screen|Widget,Route')
 final class AppRouter extends $AppRouter {
@@ -9,40 +10,57 @@ final class AppRouter extends $AppRouter {
 
   @override
   List<AutoRoute> get routes => [
-        AutoRoute(
+        AdaptiveRoute(
           page: SplashRoute.page,
           path: PathConstants.splash,
           initial: true,
         ),
-        AutoRoute(
+        AdaptiveRoute(
           page: LoginRoute.page,
           path: PathConstants.login,
         ),
-        AutoRoute(
+        AdaptiveRoute(
           page: ProfileSelectionRoute.page,
           path: PathConstants.profileSelection,
         ),
-        AutoRoute(
+        AdaptiveRoute(
           page: MainRoute.page,
+          path: PathConstants.main,
           children: [
-            AutoRoute(
+            RedirectRoute(
+              path: '',
+              redirectTo: PathConstants.home,
+            ),
+            AdaptiveRoute(
               page: HomeRoute.page,
               path: PathConstants.home,
               initial: true,
             ),
-            AutoRoute(
+            AdaptiveRoute(
               page: GamesRoute.page,
               path: PathConstants.games,
             ),
-            AutoRoute(
+            AdaptiveRoute(
               page: NewAndHotRoute.page,
               path: PathConstants.newAndHot,
             ),
-            AutoRoute(
+            AdaptiveRoute(
               page: ProfileManagementRoute.page,
               path: PathConstants.profileManagement,
             ),
           ],
+        ),
+        CustomRoute(
+          page: MovieDetailRoute.page,
+          path: PathConstants.movieDetail,
+          durationInMilliseconds: 800,
+          reverseDurationInMilliseconds: 800,
+          transitionsBuilder: (context, animation, secondaryAnimation, child) {
+            return FadeTransition(
+              opacity: animation,
+              child: child,
+            );
+          },
         ),
       ];
 }
