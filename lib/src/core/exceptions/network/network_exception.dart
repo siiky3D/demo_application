@@ -1,8 +1,8 @@
 import 'dart:io';
 
-import 'package:demo_app_temp/src/core/network/model/error_model.dart';
 import 'package:dio/dio.dart';
 import 'package:equatable/equatable.dart';
+import 'package:netflix_clone/src/core/network/model/error_model.dart';
 
 ///
 /// This class extends [Equatable] and implements [Exception].
@@ -56,7 +56,8 @@ class NetworkException extends Equatable implements Exception {
 
       case DioExceptionType.badResponse:
         final model = NetworkErrorModel.fromJson(
-            dioException.response?.data as Map<String, dynamic>,);
+          dioException.response?.data as Map<String, dynamic>,
+        );
         message = model.statusMessage ?? 'Unexpected bad response';
 
       case DioExceptionType.unknown:

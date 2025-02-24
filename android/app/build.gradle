@@ -80,17 +80,17 @@ android {
         production {
             dimension "default"
             applicationIdSuffix ""
-            manifestPlaceholders = [appName: "Demo App Temp"]
+            manifestPlaceholders = [appName: "Netflix Clone"]
         }
         staging {
             dimension "default"
             applicationIdSuffix ".stg"
-            manifestPlaceholders = [appName: "[STG] Demo App Temp"]
+            manifestPlaceholders = [appName: "[STG] Netflix Clone"]
         }
         development {
             dimension "default"
             applicationIdSuffix ".dev"
-            manifestPlaceholders = [appName: "[DEV] Demo App Temp"]
+            manifestPlaceholders = [appName: "[DEV] Netflix Clone"]
         }
     }
 

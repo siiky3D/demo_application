@@ -1,20 +1,14 @@
-import 'package:auto_route/auto_route.dart';
-import 'package:demo_app_temp/src/core/common_widgets/image/base_network_image.dart';
-import 'package:demo_app_temp/src/core/extensions/int_extensions.dart';
-import 'package:demo_app_temp/src/features/movies/domain/entities/movie_credit/cast_entity.dart';
-import 'package:demo_app_temp/src/features/movies/domain/entities/movie_detail/movie_detail_entity.dart';
-import 'package:demo_app_temp/src/features/movies/presentation/states/movie/get_movie_credits/get_movie_credits_cubit.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:get_it/get_it.dart';
 import 'package:intl/intl.dart';
-import 'package:shimmer/shimmer.dart';
+import 'package:netflix_clone/src/core/common_widgets/image/base_network_image.dart';
+import 'package:netflix_clone/src/core/extensions/int_extensions.dart';
+import 'package:netflix_clone/src/features/movies/domain/entities/movie_credit/cast_entity.dart';
+import 'package:netflix_clone/src/features/movies/domain/entities/movie_detail/movie_detail_entity.dart';
 
 part '../_widgets/movie_detail/actor_card.dart';
 part '../_widgets/movie_detail/tag_container.dart';
 
-@RoutePage()
 class MovieDetailScreen extends StatelessWidget {
   const MovieDetailScreen({
     required this.movieDetail,
@@ -27,11 +21,7 @@ class MovieDetailScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => GetIt.I<GetMovieCreditsCubit>()
-        ..getMovieCredits(movieDetail?.id ?? 0),
-      child: _MovieDetailView(movieDetail: movieDetail, heroTag: heroTag),
-    );
+    return _MovieDetailView(movieDetail: movieDetail, heroTag: heroTag);
   }
 }
 
@@ -102,19 +92,23 @@ class _MovieDetailView extends StatelessWidget {
                                       5.horizontalSpace,
                                       const Icon(Icons.star, size: 15),
                                       10.horizontalSpace,
-                                      Text('·',
-                                          style: Theme.of(context)
-                                              .textTheme
-                                              .titleSmall
-                                              ?.copyWith(
-                                                  fontWeight: FontWeight.w900,),),
+                                      Text(
+                                        '·',
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .titleSmall
+                                            ?.copyWith(
+                                              fontWeight: FontWeight.w900,
+                                            ),
+                                      ),
                                       10.horizontalSpace,
                                       Text(
                                         DateFormat('yyyy').format(
-                                            DateTime.tryParse(
-                                                    movieDetail?.releaseDate ??
-                                                        '',) ??
-                                                DateTime.now(),),
+                                          DateTime.tryParse(
+                                                movieDetail?.releaseDate ?? '',
+                                              ) ??
+                                              DateTime.now(),
+                                        ),
                                         style: Theme.of(context)
                                             .textTheme
                                             .titleMedium,
@@ -129,15 +123,18 @@ class _MovieDetailView extends StatelessWidget {
 
                             //* Overview
                             Flexible(
-                                child: SingleChildScrollView(
-                                    child: Text('${movieDetail?.overview}'),),),
+                              child: SingleChildScrollView(
+                                child: Text('${movieDetail?.overview}'),
+                              ),
+                            ),
 
                             20.verticalSpace,
 
                             //* Backdrop
                             Flexible(
                               child: BaseNetworkImage.originalImageSize(
-                                  movieDetail?.backdropPath,),
+                                movieDetail?.backdropPath,
+                              ),
                             ),
 
                             20.verticalSpace,
@@ -168,68 +165,13 @@ class _MovieDetailView extends StatelessWidget {
                     //* Cast
                     Padding(
                       padding: const EdgeInsets.symmetric(
-                              horizontal: 12, vertical: 10,)
-                          .r,
+                        horizontal: 12,
+                        vertical: 10,
+                      ).r,
                       child: Text(
                         'Cast',
                         textAlign: TextAlign.left,
                         style: Theme.of(context).textTheme.titleLarge,
-                      ),
-                    ),
-                    SafeArea(
-                      top: false,
-                      child: BlocBuilder<GetMovieCreditsCubit,
-                          GetMovieCreditsState>(
-                        builder: (context, state) {
-                          if (state is! GetMovieCreditsLoaded) {
-                            return Shimmer.fromColors(
-                              baseColor: Theme.of(context).primaryColorDark,
-                              highlightColor: Theme.of(context).primaryColor,
-                              child: SizedBox(
-                                height: 70.h,
-                                width: 1.sw,
-                                child: ListView.separated(
-                                  scrollDirection: Axis.horizontal,
-                                  padding:
-                                      const EdgeInsets.symmetric(horizontal: 12)
-                                          .r,
-                                  physics: const NeverScrollableScrollPhysics(),
-                                  itemBuilder: (_, __) => Container(
-                                    height: 70.h,
-                                    width: 225.w,
-                                    decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(12),
-                                      color: Colors.white,
-                                    ),
-                                  ),
-                                  separatorBuilder: (_, __) =>
-                                      SizedBox(width: 30.w),
-                                  itemCount: 4,
-                                ),
-                              ),
-                            );
-                          }
-
-                          return SizedBox(
-                            height: 70.h,
-                            child: ListView.separated(
-                              scrollDirection: Axis.horizontal,
-                              padding:
-                                  const EdgeInsets.symmetric(horizontal: 12).r,
-                              itemBuilder: (_, index) => SizedBox(
-                                height: 70.h,
-                                width: 225.w,
-                                child: _ActorCard(
-                                    castEntity:
-                                        state.movieCreditEntity.cast?[index],),
-                              ),
-                              separatorBuilder: (_, __) =>
-                                  SizedBox(width: 30.w),
-                              itemCount:
-                                  state.movieCreditEntity.cast?.length ?? 0,
-                            ),
-                          );
-                        },
                       ),
                     ),
                   ],

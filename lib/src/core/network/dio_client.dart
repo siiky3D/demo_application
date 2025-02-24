@@ -1,8 +1,9 @@
 import 'dart:developer';
 import 'dart:io';
 
-import 'package:demo_app_temp/src/core/config/constants/app_constants.dart';
 import 'package:dio/dio.dart';
+import 'package:netflix_clone/src/core/config/constants/app_constants.dart';
+import 'package:netflix_clone/src/core/network/api_client.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 
 /// A class that provides a wrapper around the Dio HTTP client library.
@@ -52,131 +53,9 @@ class DioClient {
           ),
         ],
       );
+    apiClient = ApiClient(_dio);
   }
 
   late final Dio _dio;
-
-  /// * GET
-  Future<Response<dynamic>> get(
-    String url, {
-    Map<String, dynamic>? queryParameters,
-    Options? options,
-    CancelToken? cancelToken,
-    ProgressCallback? onReceiveProgress,
-  }) async {
-    try {
-      final response = await _dio.get<dynamic>(
-        url,
-        queryParameters: queryParameters,
-        options: options,
-        cancelToken: cancelToken,
-        onReceiveProgress: onReceiveProgress,
-      );
-      return response;
-    } on DioException {
-      rethrow;
-    }
-  }
-
-  /// * POST
-  Future<Response<dynamic>> post(
-    String uri, {
-    dynamic data,
-    Map<String, dynamic>? queryParameters,
-    Options? options,
-    CancelToken? cancelToken,
-    ProgressCallback? onSendProgress,
-    ProgressCallback? onReceiveProgress,
-  }) async {
-    try {
-      final response = await _dio.post<dynamic>(
-        uri,
-        data: data,
-        queryParameters: queryParameters,
-        options: options,
-        cancelToken: cancelToken,
-        onSendProgress: onSendProgress,
-        onReceiveProgress: onReceiveProgress,
-      );
-      return response;
-    } on DioException {
-      rethrow;
-    }
-  }
-
-  /// * PUT
-  Future<Response<dynamic>> put(
-    String uri, {
-    dynamic data,
-    Map<String, dynamic>? queryParameters,
-    Options? options,
-    CancelToken? cancelToken,
-    ProgressCallback? onSendProgress,
-    ProgressCallback? onReceiveProgress,
-  }) async {
-    try {
-      final response = await _dio.put<dynamic>(
-        uri,
-        data: data,
-        queryParameters: queryParameters,
-        options: options,
-        cancelToken: cancelToken,
-        onSendProgress: onSendProgress,
-        onReceiveProgress: onReceiveProgress,
-      );
-      return response;
-    } on DioException {
-      rethrow;
-    }
-  }
-
-  /// * PATCH
-  Future<Response<dynamic>> patch(
-    String uri, {
-    dynamic data,
-    Map<String, dynamic>? queryParameters,
-    Options? options,
-    CancelToken? cancelToken,
-    ProgressCallback? onSendProgress,
-    ProgressCallback? onReceiveProgress,
-  }) async {
-    try {
-      final response = await _dio.patch<dynamic>(
-        uri,
-        data: data,
-        queryParameters: queryParameters,
-        options: options,
-        cancelToken: cancelToken,
-        onSendProgress: onSendProgress,
-        onReceiveProgress: onReceiveProgress,
-      );
-      return response;
-    } on DioException {
-      rethrow;
-    }
-  }
-
-  /// * DELETE
-  Future<dynamic> delete(
-    String uri, {
-    dynamic data,
-    Map<String, dynamic>? queryParameters,
-    Options? options,
-    CancelToken? cancelToken,
-    ProgressCallback? onSendProgress,
-    ProgressCallback? onReceiveProgress,
-  }) async {
-    try {
-      final response = await _dio.delete<dynamic>(
-        uri,
-        data: data,
-        queryParameters: queryParameters,
-        options: options,
-        cancelToken: cancelToken,
-      );
-      return response;
-    } on DioException {
-      rethrow;
-    }
-  }
+  late final ApiClient apiClient;
 }

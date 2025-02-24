@@ -1,10 +1,10 @@
 class PathConstants {
   //* Main
   static const String main = '/main';
-  static const String home = '/main/home';
-  static const String games = '/main/games';
-  static const String newAndHot = '/main/newAndHot';
-  static const String profileManagement = '/main/profileManagement';
+  static const String home = 'home';
+  static const String games = 'games';
+  static const String newAndHot = 'newAndHot';
+  static const String profileManagement = 'profileManagement';
 
   //* Detail
   static const String movieDetail = '/movie/:id';

@@ -1,10 +1,9 @@
-import 'package:demo_app_temp/src/core/exceptions/database/database_exception.dart';
-import 'package:demo_app_temp/src/core/exceptions/network/network_exception.dart';
-import 'package:demo_app_temp/src/features/movies/domain/entities/movie_credit/movie_credit_entity.dart';
-import 'package:demo_app_temp/src/features/movies/domain/entities/movie_detail/movie_detail_entity.dart';
-import 'package:demo_app_temp/src/features/movies/domain/entities/movie_listings/movie_listings_entity.dart';
-import 'package:demo_app_temp/src/features/movies/domain/repositories/movie/movie_repository.dart';
 import 'package:fpdart/fpdart.dart';
+import 'package:netflix_clone/src/core/exceptions/database/database_exception.dart';
+import 'package:netflix_clone/src/core/exceptions/network/network_exception.dart';
+import 'package:netflix_clone/src/features/movies/domain/entities/movie_detail/movie_detail_entity.dart';
+import 'package:netflix_clone/src/features/movies/domain/entities/movie_listings/movie_listings_entity.dart';
+import 'package:netflix_clone/src/features/movies/domain/repositories/movie/movie_repository.dart';
 
 class MovieUsecases {
   const MovieUsecases(this._movieRepository);
@@ -25,11 +24,25 @@ class MovieUsecases {
     return _movieRepository.getTopRatedMovies(page: page);
   }
 
-  /// Retrieves the movie credits for a given movie ID.
-  Future<Either<NetworkException, MovieCreditEntity>> getMovieCredits({
+  /// This method gets upcoming movies from the remote data source.
+  Future<Either<NetworkException, MovieListingsEntity>> getUpcomingMovies({
+    required int page,
+  }) async {
+    return _movieRepository.getUpcomingMovies(page: page);
+  }
+
+  /// This method gets movie details from the remote data source.
+  Future<Either<NetworkException, MovieDetailEntity>> getMovieDetails({
     required int movieId,
   }) async {
-    return _movieRepository.getMovieCredits(movieId: movieId);
+    return _movieRepository.getMovieDetails(movieId: movieId);
+  }
+
+  /// This method gets movie now playing from the remote data source.
+  Future<Either<NetworkException, MovieListingsEntity>> getNowPlayingMovies({
+    required int page,
+  }) async {
+    return _movieRepository.getNowPlayingMovies(page: page);
   }
 
   //* LOCAL

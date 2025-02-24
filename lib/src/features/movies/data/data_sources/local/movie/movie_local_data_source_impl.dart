@@ -1,7 +1,7 @@
-import 'package:demo_app_temp/src/core/database/local_database.dart';
-import 'package:demo_app_temp/src/features/movies/data/data_sources/local/_collections/movie_detail/movie_detail_collection.dart';
-import 'package:demo_app_temp/src/features/movies/data/data_sources/local/movie/movie_local_data_source.dart';
 import 'package:isar/isar.dart';
+import 'package:netflix_clone/src/core/database/local_database.dart';
+import 'package:netflix_clone/src/features/movies/data/data_sources/local/_collections/movie_detail/movie_detail_collection.dart';
+import 'package:netflix_clone/src/features/movies/data/data_sources/local/movie/movie_local_data_source.dart';
 
 class MovieLocalDataSourceImpl implements MovieLocalDataSource {
   MovieLocalDataSourceImpl(this.localDatabase);
@@ -37,13 +37,15 @@ class MovieLocalDataSourceImpl implements MovieLocalDataSource {
 
   /// Saves the given [movieDetailCollection] to the local database.
   @override
-  Future<void> saveMovieDetail(
-      {required MovieDetailCollection movieDetailCollection,}) async {
+  Future<void> saveMovieDetail({
+    required MovieDetailCollection movieDetailCollection,
+  }) async {
     try {
       final db = localDatabase.db;
 
       await db.writeTxn(
-          () async => db.movieDetailCollections.put(movieDetailCollection),);
+        () async => db.movieDetailCollections.put(movieDetailCollection),
+      );
     } catch (_) {
       rethrow;
     }

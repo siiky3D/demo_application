@@ -1,14 +1,13 @@
-import 'package:demo_app_temp/src/features/movies/data/data_sources/_mappers/entity_convertable.dart';
-import 'package:demo_app_temp/src/features/movies/domain/entities/movie_credit/crew_entity.dart';
 import 'package:equatable/equatable.dart';
 import 'package:json_annotation/json_annotation.dart';
+import 'package:netflix_clone/src/features/movies/data/data_sources/_mappers/entity_convertable.dart';
+import 'package:netflix_clone/src/features/movies/domain/entities/movie_credit/crew_entity.dart';
 
 part 'crew_model.g.dart';
 
 @JsonSerializable()
 class CrewModel extends Equatable
     with EntityConvertible<CrewModel, CrewEntity> {
-
   const CrewModel({
     this.adult,
     this.gender,

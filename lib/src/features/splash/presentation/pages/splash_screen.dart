@@ -1,11 +1,10 @@
 import 'dart:async';
 
-import 'package:auto_route/auto_route.dart';
-import 'package:demo_app_temp/src/core/config/routes/app_router.gr.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:lottie/lottie.dart';
+import 'package:netflix_clone/src/core/config/routes/app_router.dart';
 
-@RoutePage()
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
 
@@ -19,7 +18,7 @@ class _SplashScreenState extends State<SplashScreen> {
     super.initState();
 
     Timer(const Duration(seconds: 3), () {
-      context.router.replace(const MainRoute());
+      context.goNamed(AppRoute.login.name);
     });
   }
 

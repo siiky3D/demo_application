@@ -1,10 +1,11 @@
-import 'package:demo_app_temp/src/features/movies/data/data_sources/local/_collections/movie_detail/movie_detail_collection.dart';
+import 'package:netflix_clone/src/features/movies/data/data_sources/local/_collections/movie_detail/movie_detail_collection.dart';
 
 abstract class MovieLocalDataSource {
   const MovieLocalDataSource();
 
   /// Saves the [movieDetailCollection] to the local data source.
-  Future<void> saveMovieDetail({required MovieDetailCollection movieDetailCollection});
+  Future<void> saveMovieDetail(
+      {required MovieDetailCollection movieDetailCollection,});
 
   /// Deletes the movie detail with the given [movieId] from the local data source.
   Future<void> deleteMovieDetail({required int? movieId});

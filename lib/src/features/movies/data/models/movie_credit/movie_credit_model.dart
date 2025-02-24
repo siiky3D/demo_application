@@ -1,9 +1,9 @@
-import 'package:demo_app_temp/src/features/movies/data/data_sources/_mappers/entity_convertable.dart';
-import 'package:demo_app_temp/src/features/movies/data/models/movie_credit/cast_model.dart';
-import 'package:demo_app_temp/src/features/movies/data/models/movie_credit/crew_model.dart';
-import 'package:demo_app_temp/src/features/movies/domain/entities/movie_credit/movie_credit_entity.dart';
 import 'package:equatable/equatable.dart';
 import 'package:json_annotation/json_annotation.dart';
+import 'package:netflix_clone/src/features/movies/data/data_sources/_mappers/entity_convertable.dart';
+import 'package:netflix_clone/src/features/movies/data/models/movie_credit/cast_model.dart';
+import 'package:netflix_clone/src/features/movies/data/models/movie_credit/crew_model.dart';
+import 'package:netflix_clone/src/features/movies/domain/entities/movie_credit/movie_credit_entity.dart';
 
 part 'movie_credit_model.g.dart';
 

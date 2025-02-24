@@ -58,8 +58,10 @@ class _MovieListingWidget extends HookWidget {
           itemBuilder: (_, index) {
             final tag = UniqueKey();
             return GestureDetector(
-              onTap: () => context.router.push(
-                MovieDetailRoute(movieDetail: movies?[index], heroTag: tag),
+              onTap: () => context.pushNamed(
+                AppRoute.movieDetail.name,
+                pathParameters: {'id': movies?[index].id.toString() ?? '0'},
+                extra: movies?[index],
               ),
               child: Hero(tag: tag, child: MovieCard(movie: movies?[index])),
             );

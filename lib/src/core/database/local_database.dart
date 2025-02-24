@@ -1,5 +1,5 @@
-import 'package:demo_app_temp/src/features/movies/data/data_sources/local/_collections/movie_detail/movie_detail_collection.dart';
 import 'package:isar/isar.dart';
+import 'package:netflix_clone/src/features/movies/data/data_sources/local/_collections/movie_detail/movie_detail_collection.dart';
 import 'package:path_provider/path_provider.dart';
 
 /// A class representing a local database.
@@ -23,8 +23,10 @@ class LocalDatabase {
     if (_isInitialized) throw IsarError('Isar has already been initialized.');
 
     final directory = await getApplicationDocumentsDirectory();
-    _isar = await Isar.open([MovieDetailCollectionSchema],
-        directory: directory.path,);
+    _isar = await Isar.open(
+      [MovieDetailCollectionSchema],
+      directory: directory.path,
+    );
 
     _isInitialized = true;
   }

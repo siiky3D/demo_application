@@ -1,7 +1,7 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
-import 'package:demo_app_temp/src/features/movies/data/data_sources/_mappers/entity_convertable.dart';
-import 'package:demo_app_temp/src/features/movies/domain/entities/movie_detail/movie_detail_entity.dart';
 import 'package:isar/isar.dart';
+import 'package:netflix_clone/src/features/movies/data/data_sources/_mappers/entity_convertable.dart';
+import 'package:netflix_clone/src/features/movies/domain/entities/movie_detail/movie_detail_entity.dart';
 
 part 'movie_detail_collection.g.dart';
 

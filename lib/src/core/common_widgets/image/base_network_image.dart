@@ -1,14 +1,16 @@
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:demo_app_temp/src/core/common_widgets/indicator/base_indicator.dart';
-import 'package:demo_app_temp/src/core/config/constants/image_constants.dart';
 import 'package:flutter/material.dart';
+import 'package:netflix_clone/src/core/common_widgets/indicator/base_indicator.dart';
+import 'package:netflix_clone/src/core/config/constants/image_constants.dart';
 
 class BaseNetworkImage extends StatelessWidget {
   const BaseNetworkImage(this.url, {super.key, this.hasRadius = true});
 
-  BaseNetworkImage.originalImageSize(String? targetUrl,
-      {super.key, this.hasRadius = true,})
-      : url = ImageConstants.originalImage(targetUrl);
+  BaseNetworkImage.originalImageSize(
+    String? targetUrl, {
+    super.key,
+    this.hasRadius = true,
+  }) : url = ImageConstants.originalImage(targetUrl);
 
   final String? url;
   final bool hasRadius;

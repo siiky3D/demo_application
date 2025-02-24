@@ -1,6 +1,6 @@
-import 'package:auto_route/auto_route.dart';
-import 'package:demo_app_temp/src/core/utils/size.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
+import 'package:netflix_clone/src/core/utils/size.dart';
 
 class AppAppBar extends AppBar {
   AppAppBar({
@@ -177,13 +177,13 @@ class AppBarBackButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    if (!context.router.canPop()) {
+    if (!context.canPop()) {
       return const SizedBox.shrink();
     }
 
     return IconButton(
       padding: AppAppBar.padding,
-      onPressed: () => onPressed ?? context.router.maybePop(),
+      onPressed: () => onPressed ?? context.pop(),
       icon: icon,
     );
   }

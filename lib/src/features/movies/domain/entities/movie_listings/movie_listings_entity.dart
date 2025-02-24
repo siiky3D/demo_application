@@ -1,5 +1,5 @@
-import 'package:demo_app_temp/src/features/movies/domain/entities/movie_detail/movie_detail_entity.dart';
 import 'package:equatable/equatable.dart';
+import 'package:netflix_clone/src/features/movies/domain/entities/movie_detail/movie_detail_entity.dart';
 
 class MovieListingsEntity extends Equatable {
   const MovieListingsEntity({
