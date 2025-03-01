@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:netflix_clone/src/core/config/routes/go_router_refresh_stream.dart';
 import 'package:netflix_clone/src/core/config/routes/not_found_screen.dart';
 import 'package:netflix_clone/src/core/config/routes/scaffold_with_nested_navigation.dart';
+import 'package:netflix_clone/src/features/authentication/domain/repositories/authentication_repository.dart';
+import 'package:netflix_clone/src/features/authentication/presentation/blocs/auth/authentication_bloc.dart';
 import 'package:netflix_clone/src/features/authentication/presentation/pages/login/login_screen.dart';
 import 'package:netflix_clone/src/features/authentication/presentation/pages/profile_management/profile_management_screen.dart';
 import 'package:netflix_clone/src/features/authentication/presentation/pages/profile_selection/profile_selection_screen.dart';
@@ -37,15 +41,32 @@ enum AppRoute {
   search,
 }
 
-GoRouter goRouter() {
+GoRouter goRouter(BuildContext context) {
   return GoRouter(
-    initialLocation: '/splash',
+    initialLocation: '/home',
     debugLogDiagnostics: true,
     navigatorKey: _rootNavigatorKey,
     // * redirect logic based on the authentication state
     redirect: (context, state) async {
+      final authState = context.read<AuthenticationBloc>().state;
+      final path = state.uri.path;
+      if (path == '/splash' &&
+          authState.status == AuthenticationStatus.unknown) {
+        return null;
+      }
+      if (authState.status == AuthenticationStatus.unauthenticated) {
+        return '/login';
+      }
+
+      if (authState.status == AuthenticationStatus.authenticated) {
+        return '/profileSelection';
+      }
+
       return null;
     },
+    refreshListenable: GoRouterRefreshStream(
+      context.read<AuthenticationBloc>().stream,
+    ),
     routes: [
       GoRoute(
         path: '/splash',
@@ -137,6 +158,7 @@ GoRouter goRouter() {
         ],
       ),
     ],
+
     errorBuilder: (context, state) => const NotFoundScreen(),
   );
 }

@@ -7,6 +7,9 @@ environment:
   sdk: ^3.5.0
 
 dependencies:
+  authentication_repository:
+    path: packages/authentication_repository
+
   # # for navigation => https://pub.dev/packages/auto_route
   # auto_route: ^8.1.4
 
@@ -46,15 +49,18 @@ dependencies:
   flutter_svg: ^2.0.17
 
   # for functional programming => https://pub.dev/packages/fpdart
+  formz: ^0.8.0
   fpdart: ^1.1.1
 
   # for dependency injection => https://pub.dev/packages/get_it
   get_it: ^8.0.3
 
-  # for theme or locale management => https://pub.dev/packages/hydrated_bloc
   go_router: ^14.8.0
+
+  # for theme or locale management => https://pub.dev/packages/hydrated_bloc
   hydrated_bloc: ^10.0.0
 
+  injectable: ^2.5.0
   intl: ^0.19.0
 
   # for local data source
@@ -83,6 +89,10 @@ dependencies:
   # for url launcher => https://pub.dev/packages/url_launcher
   url_launcher: ^6.3.1
 
+  user_repository:
+    path: packages/user_repository
+  uuid: ^4.5.1
+
 dependency_overrides:
   analyzer: ^6.3.0
 
@@ -101,6 +111,7 @@ dev_dependencies:
     sdk: flutter
 
   # for local data source
+  injectable_generator: ^2.6.2
   isar_generator: ^3.1.0+1
 
   # for creating api models => https://pub.dev/packages/json_serializable
@@ -124,3 +135,4 @@ flutter:
     - assets/images/
     - assets/svgs/
     - assets/lotties/
+    - assets/mock/

@@ -1,8 +1,10 @@
+import 'package:injectable/injectable.dart';
 import 'package:isar/isar.dart';
 import 'package:netflix_clone/src/core/database/local_database.dart';
 import 'package:netflix_clone/src/features/movies/data/data_sources/local/_collections/movie_detail/movie_detail_collection.dart';
 import 'package:netflix_clone/src/features/movies/data/data_sources/local/movie/movie_local_data_source.dart';
 
+@LazySingleton(as: MovieLocalDataSource)
 class MovieLocalDataSourceImpl implements MovieLocalDataSource {
   MovieLocalDataSourceImpl(this.localDatabase);
 

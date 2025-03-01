@@ -5,6 +5,7 @@
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'dart:async' as _i7;
 
+import 'package:mockito/mockito.dart' as _i1;
 import 'package:netflix_clone/src/core/network/api_client.dart' as _i2;
 import 'package:netflix_clone/src/core/network/dio_client.dart' as _i5;
 import 'package:netflix_clone/src/features/movies/data/data_sources/remote/movie_remote_data_source.dart'
@@ -13,7 +14,6 @@ import 'package:netflix_clone/src/features/movies/data/models/movie_detail/movie
     as _i4;
 import 'package:netflix_clone/src/features/movies/data/models/movies_listings/movie_listings_model.dart'
     as _i3;
-import 'package:mockito/mockito.dart' as _i1;
 
 // ignore_for_file: type=lint
 // ignore_for_file: avoid_redundant_argument_values

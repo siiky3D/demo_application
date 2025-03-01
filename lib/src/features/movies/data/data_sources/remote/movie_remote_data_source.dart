@@ -3,6 +3,7 @@ import 'package:netflix_clone/src/features/movies/data/models/movies_listings/mo
 
 /// Abstract class that defines the methods for fetching popular and top rated
 /// movies from a remote data source.
+
 abstract class MovieRemoteDataSource {
   /// Fetches a list of popular movies from the remote data source.
   Future<MovieListingsModel> getPopularMovies({

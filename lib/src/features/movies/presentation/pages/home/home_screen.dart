@@ -13,23 +13,11 @@ import 'package:netflix_clone/src/features/movies/presentation/blocs/movie/get_t
 
 part '../../_widgets/movies/movie_listing_widget.dart';
 
-class HomeScreen extends HookWidget {
+class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final tabbarController = useTabController(initialLength: 2);
-
-    useEffect(
-      () {
-        context.read<GetPopularMoviesBloc>().add(
-              const FetchPopularMovies(),
-            );
-        return null;
-      },
-      [],
-    );
-
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.black,
@@ -46,35 +34,37 @@ class HomeScreen extends HookWidget {
                   ),
                 ],
               ),
-              Padding(
-                padding: const EdgeInsets.only(right: 20).r,
-                child: InkWell(
-                  onTap: () {},
-                  child: const Icon(
-                    Icons.search,
-                    size: 30,
-                    color: Colors.white,
+              Row(
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.only(right: 20).r,
+                    child: InkWell(
+                      onTap: () {},
+                      child: const Icon(
+                        Icons.download,
+                        size: 30,
+                        color: Colors.white,
+                      ),
+                    ),
                   ),
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(right: 20).r,
-                child: InkWell(
-                  onTap: () {},
-                  child: const Icon(
-                    Icons.search,
-                    size: 30,
-                    color: Colors.white,
+                  Padding(
+                    padding: const EdgeInsets.only(right: 20).r,
+                    child: InkWell(
+                      onTap: () {},
+                      child: Icon(
+                        Icons.search,
+                        size: 30.r,
+                        color: Colors.white,
+                      ),
+                    ),
                   ),
-                ),
+                ],
               ),
             ],
           ),
         ],
       ),
-      body: TabBarView(
-        controller: tabbarController,
-        physics: const NeverScrollableScrollPhysics(),
+      body: Column(
         children: [
           BlocBuilder<GetPopularMoviesBloc, GetPopularMoviesState>(
             builder: (context, getPopularMoviesState) {

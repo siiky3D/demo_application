@@ -2,6 +2,7 @@ import 'dart:developer';
 import 'dart:io';
 
 import 'package:dio/dio.dart';
+import 'package:injectable/injectable.dart';
 import 'package:netflix_clone/src/core/config/constants/app_constants.dart';
 import 'package:netflix_clone/src/core/network/api_client.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
@@ -13,6 +14,8 @@ import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 ///
 /// It also sets up the base URL, headers, timeouts, response type, and
 /// interceptors for the Dio client.
+
+@lazySingleton
 class DioClient {
   DioClient() {
     _dio = Dio();

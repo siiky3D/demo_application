@@ -1,10 +1,12 @@
 import 'dart:ui';
 
+import 'package:injectable/injectable.dart';
 import 'package:netflix_clone/src/core/network/api_client.dart';
 import 'package:netflix_clone/src/features/movies/data/data_sources/remote/movie_remote_data_source.dart';
 import 'package:netflix_clone/src/features/movies/data/models/movie_detail/movie_detail_model.dart';
 import 'package:netflix_clone/src/features/movies/data/models/movies_listings/movie_listings_model.dart';
 
+@LazySingleton(as: MovieRemoteDataSource)
 class MovieRemoteDataSourceImpl implements MovieRemoteDataSource {
   MovieRemoteDataSourceImpl(this._apiClient)
       : _deviceLocale = PlatformDispatcher.instance.locale.languageCode;

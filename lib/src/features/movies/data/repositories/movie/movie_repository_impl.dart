@@ -2,6 +2,7 @@
 
 import 'package:dio/dio.dart';
 import 'package:fpdart/fpdart.dart';
+import 'package:injectable/injectable.dart';
 import 'package:isar/isar.dart';
 import 'package:netflix_clone/src/core/exceptions/database/database_exception.dart';
 import 'package:netflix_clone/src/core/exceptions/network/network_exception.dart';
@@ -12,6 +13,7 @@ import 'package:netflix_clone/src/features/movies/domain/entities/movie_detail/m
 import 'package:netflix_clone/src/features/movies/domain/entities/movie_listings/movie_listings_entity.dart';
 import 'package:netflix_clone/src/features/movies/domain/repositories/movie/movie_repository.dart';
 
+@LazySingleton(as: MovieRepository)
 class MovieRepositoryImpl implements MovieRepository {
   MovieRepositoryImpl(this._movieRemoteDataSource, this._movieLocalDataSource);
   final MovieRemoteDataSource _movieRemoteDataSource;

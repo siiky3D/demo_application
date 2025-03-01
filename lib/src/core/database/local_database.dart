@@ -1,3 +1,4 @@
+import 'package:injectable/injectable.dart';
 import 'package:isar/isar.dart';
 import 'package:netflix_clone/src/features/movies/data/data_sources/local/_collections/movie_detail/movie_detail_collection.dart';
 import 'package:path_provider/path_provider.dart';
@@ -5,6 +6,7 @@ import 'package:path_provider/path_provider.dart';
 /// A class representing a local database.
 ///
 /// This class provides methods to initialize and access the Isar database.
+@lazySingleton
 class LocalDatabase {
   late final Isar _isar;
   bool _isInitialized = false;

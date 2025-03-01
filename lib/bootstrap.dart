@@ -4,7 +4,7 @@ import 'dart:developer';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:hydrated_bloc/hydrated_bloc.dart';
-import 'package:netflix_clone/src/app.dart';
+import 'package:netflix_clone/injector.dart';
 import 'package:path_provider/path_provider.dart';
 // import 'package:path_provider/path_provider.dart';
 
@@ -39,7 +39,7 @@ Future<void> bootstrap(FutureOr<Widget> Function() builder) async {
   await dotenv.load();
 
   /// Initialize Injection
-  await init();
+  await configureDependencies();
 
   final directory = HydratedStorageDirectory(
     (await getApplicationDocumentsDirectory()).path,
