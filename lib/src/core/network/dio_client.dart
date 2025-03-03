@@ -32,6 +32,8 @@ class DioClient {
       ..interceptors.addAll(
         [
           PrettyDioLogger(
+            requestHeader: true,
+            requestBody: true,
             compact: false,
             logPrint: (object) => log(object.toString(), name: 'TMDB API'),
           ),
