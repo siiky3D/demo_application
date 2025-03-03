@@ -11,5 +11,18 @@
   },
   "@myList": {
     "description": "Text shown as a button or action for the user's list"
+  },
+  "home": "Home",
+  "games": "Games",
+  "newAndHot": "New and Hot",
+  "myNetflix": "My Netflix",
+  "notifications": "Notifications",
+  "viewAll": "View All",
+  "switchProfile": "Switch Profile",
+  "manageProfile": "Manage Profile",
+  "downloaded": "Downloaded Content",
+  "downloadedDesc": "Movies and shows you've downloaded will\nappear here",
+  "@downloaded": {
+    "description": "Movies and shows you've downloaded will appear here"
   }
 }

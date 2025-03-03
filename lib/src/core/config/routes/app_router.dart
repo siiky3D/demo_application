@@ -6,17 +6,17 @@ import 'package:netflix_clone/src/core/config/routes/go_router_refresh_stream.da
 import 'package:netflix_clone/src/core/config/routes/not_found_screen.dart';
 import 'package:netflix_clone/src/core/config/routes/scaffold_with_nested_navigation.dart';
 import 'package:netflix_clone/src/features/authentication/domain/repositories/authentication_repository.dart';
-import 'package:netflix_clone/src/features/authentication/presentation/blocs/auth/authentication_bloc.dart';
 import 'package:netflix_clone/src/features/authentication/presentation/pages/login/login_screen.dart';
 import 'package:netflix_clone/src/features/authentication/presentation/pages/profile_management/profile_management_screen.dart';
 import 'package:netflix_clone/src/features/authentication/presentation/pages/profile_selection/profile_selection_screen.dart';
+import 'package:netflix_clone/src/features/authentication/presentation/states/auth/authentication_bloc.dart';
 import 'package:netflix_clone/src/features/games/presentation/pages/game_screen.dart';
 import 'package:netflix_clone/src/features/movies/domain/entities/movie_detail/movie_detail_entity.dart';
-import 'package:netflix_clone/src/features/movies/presentation/blocs/movie/get_popular_movies/get_popular_movies_bloc.dart';
-import 'package:netflix_clone/src/features/movies/presentation/blocs/movie/get_top_rated_movies/get_top_rated_movies_bloc.dart';
 import 'package:netflix_clone/src/features/movies/presentation/pages/home/home_screen.dart';
 import 'package:netflix_clone/src/features/movies/presentation/pages/movie_detail_screen.dart';
 import 'package:netflix_clone/src/features/movies/presentation/pages/new_and_hot_screen.dart';
+import 'package:netflix_clone/src/features/movies/presentation/states/movie/get_popular_movies/get_popular_movies_bloc.dart';
+import 'package:netflix_clone/src/features/movies/presentation/states/movie/get_top_rated_movies/get_top_rated_movies_bloc.dart';
 import 'package:netflix_clone/src/features/splash/presentation/pages/splash_screen.dart';
 
 /// All the supported routes in the app.
@@ -46,7 +46,7 @@ enum AppRoute {
 
 GoRouter goRouter(BuildContext context) {
   return GoRouter(
-    initialLocation: '/home',
+    initialLocation: '/account',
     debugLogDiagnostics: true,
     navigatorKey: _rootNavigatorKey,
     // * redirect logic based on the authentication state
@@ -107,7 +107,7 @@ GoRouter goRouter(BuildContext context) {
                         BlocProvider.value(value: popularBloc),
                         BlocProvider.value(value: topRatedBloc),
                       ],
-                      child: const HomeScreen(),
+                      child: HomeScreen(),
                     ),
                   );
                 },
@@ -139,7 +139,7 @@ GoRouter goRouter(BuildContext context) {
               GoRoute(
                 path: '/games',
                 name: AppRoute.games.name,
-                pageBuilder: (context, state) => const NoTransitionPage(
+                pageBuilder: (context, state) => NoTransitionPage(
                   child: GamesScreen(),
                 ),
               ),

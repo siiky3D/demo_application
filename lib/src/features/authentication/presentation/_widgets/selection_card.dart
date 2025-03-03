@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:netflix_clone/src/core/config/constants/app_sizes.dart';
+import 'package:netflix_clone/src/core/theme/colors.dart';
+import 'package:netflix_clone/src/core/theme/extensions.dart';
 import 'package:netflix_clone/src/features/authentication/domain/entities/export_entities.dart';
 
 class ProfileSelectionCard extends StatelessWidget {
@@ -20,19 +22,19 @@ class ProfileSelectionCard extends StatelessWidget {
           child: Container(
             margin: const EdgeInsets.symmetric(horizontal: Sizes.p6),
             decoration: BoxDecoration(
-              color: Colors.blue,
-              borderRadius: BorderRadius.circular(6),
+              borderRadius: BorderRadius.circular(8),
+              image: DecorationImage(
+                image: AssetImage(profiles.image),
+                fit: BoxFit.cover,
+              ),
             ),
-            child: Image.asset(profiles.image),
           ),
         ),
         gapH12,
         Text(
           profiles.name,
-          style: const TextStyle(
-            fontSize: Sizes.p16,
-            fontWeight: FontWeight.w400,
-            color: Colors.grey,
+          style: context.appTheme.typographies.captionLarge.copyWith(
+            color: AppColors.lightGray,
           ),
         ),
       ],

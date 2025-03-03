@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:netflix_clone/src/core/config/constants/app_sizes.dart';
+import 'package:netflix_clone/src/core/theme/extensions.dart';
 
 class Modal extends StatelessWidget {
   const Modal({
@@ -54,10 +55,8 @@ class _RowTitle extends StatelessWidget {
         children: [
           Text(
             text ?? '',
-            style: const TextStyle(
-              fontSize: Sizes.p20,
-              fontWeight: FontWeight.w900,
-              color: Colors.white,
+            style: context.appTheme.typographies.heading.copyWith(
+              color: context.appTheme.colors.textOnPrimary,
             ),
           ),
           InkWell(

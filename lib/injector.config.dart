@@ -21,8 +21,10 @@ import 'src/features/authentication/domain/repositories/authentication_repositor
     as _i992;
 import 'src/features/authentication/domain/repositories/user_repository.dart'
     as _i78;
-import 'src/features/authentication/presentation/blocs/auth/authentication_bloc.dart'
-    as _i718;
+import 'src/features/authentication/presentation/states/auth/authentication_bloc.dart'
+    as _i921;
+import 'src/features/authentication/presentation/states/profile_selection/profile_selection_cubit.dart'
+    as _i905;
 import 'src/features/movies/data/data_sources/local/movie/movie_local_data_source.dart'
     as _i807;
 import 'src/features/movies/data/data_sources/local/movie/movie_local_data_source_impl.dart'
@@ -38,14 +40,14 @@ import 'src/features/movies/domain/repositories/movie/movie_repository.dart'
 import 'src/features/movies/domain/usecases/movie/movie_usecases.dart' as _i986;
 import 'src/features/movies/domain/usecases/movie/movie_usecases_impl.dart'
     as _i1033;
-import 'src/features/movies/presentation/blocs/movie/get_now_playing_movies/get_now_playing_movies_bloc.dart'
-    as _i522;
-import 'src/features/movies/presentation/blocs/movie/get_popular_movies/get_popular_movies_bloc.dart'
-    as _i780;
-import 'src/features/movies/presentation/blocs/movie/get_top_rated_movies/get_top_rated_movies_bloc.dart'
-    as _i229;
-import 'src/features/movies/presentation/blocs/movie/get_up_coming_movies/get_up_coming_movies_bloc.dart'
-    as _i634;
+import 'src/features/movies/presentation/states/movie/get_now_playing_movies/get_now_playing_movies_bloc.dart'
+    as _i694;
+import 'src/features/movies/presentation/states/movie/get_popular_movies/get_popular_movies_bloc.dart'
+    as _i531;
+import 'src/features/movies/presentation/states/movie/get_top_rated_movies/get_top_rated_movies_bloc.dart'
+    as _i218;
+import 'src/features/movies/presentation/states/movie/get_up_coming_movies/get_up_coming_movies_bloc.dart'
+    as _i22;
 
 extension GetItInjectableX on _i174.GetIt {
 // initializes the registration of main-scope dependencies inside of GetIt
@@ -67,13 +69,15 @@ extension GetItInjectableX on _i174.GetIt {
     gh.lazySingleton<_i992.AuthenticationRepository>(
         () => _i992.AuthenticationRepository());
     gh.lazySingleton<_i78.UserRepository>(() => _i78.UserRepository());
-    gh.lazySingleton<_i522.GetNowPlayingMoviesBloc>(
-        () => _i522.GetNowPlayingMoviesBloc());
+    gh.lazySingleton<_i905.ProfileSelectionCubit>(
+        () => _i905.ProfileSelectionCubit());
+    gh.lazySingleton<_i694.GetNowPlayingMoviesBloc>(
+        () => _i694.GetNowPlayingMoviesBloc());
     gh.lazySingleton<_i807.MovieLocalDataSource>(
         () => _i517.MovieLocalDataSourceImpl(gh<_i1040.LocalDatabase>()));
     gh.lazySingleton<_i302.MovieRemoteDataSource>(
         () => _i814.MovieRemoteDataSourceImpl(gh<_i1005.ApiClient>()));
-    gh.lazySingleton<_i718.AuthenticationBloc>(() => _i718.AuthenticationBloc(
+    gh.lazySingleton<_i921.AuthenticationBloc>(() => _i921.AuthenticationBloc(
           authenticationRepository: gh<_i992.AuthenticationRepository>(),
           userRepository: gh<_i78.UserRepository>(),
         ));
@@ -83,12 +87,12 @@ extension GetItInjectableX on _i174.GetIt {
         ));
     gh.lazySingleton<_i986.MovieUsecases>(
         () => _i1033.MovieUsecasesImpl(gh<_i212.MovieRepository>()));
-    gh.lazySingleton<_i780.GetPopularMoviesBloc>(
-        () => _i780.GetPopularMoviesBloc(gh<_i986.MovieUsecases>()));
-    gh.lazySingleton<_i229.GetTopRatedMoviesBloc>(
-        () => _i229.GetTopRatedMoviesBloc(gh<_i986.MovieUsecases>()));
-    gh.lazySingleton<_i634.GetUpComingMoviesBloc>(
-        () => _i634.GetUpComingMoviesBloc(gh<_i986.MovieUsecases>()));
+    gh.lazySingleton<_i531.GetPopularMoviesBloc>(
+        () => _i531.GetPopularMoviesBloc(gh<_i986.MovieUsecases>()));
+    gh.lazySingleton<_i218.GetTopRatedMoviesBloc>(
+        () => _i218.GetTopRatedMoviesBloc(gh<_i986.MovieUsecases>()));
+    gh.lazySingleton<_i22.GetUpComingMoviesBloc>(
+        () => _i22.GetUpComingMoviesBloc(gh<_i986.MovieUsecases>()));
     return this;
   }
 }

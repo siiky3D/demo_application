@@ -2,23 +2,28 @@ import 'package:netflix_clone/src/features/authentication/domain/entities/profil
 
 const List<ProfileDetailEntity> profiles = [
   ProfileDetailEntity(
-    name: 'User I',
-    image: 'assets/images/bulbasaur.png',
+    id: 1,
+    name: '😸',
+    image: 'assets/images/netflix_profile_1.jpg',
   ),
   ProfileDetailEntity(
-    name: 'User II',
-    image: 'assets/images/chikorita.png',
+    id: 2,
+    name: '🐶',
+    image: 'assets/images/netflix_profile_2.jpg',
   ),
   ProfileDetailEntity(
-    name: 'User III',
-    image: 'assets/images/treecko.png',
+    id: 3,
+    name: 'lnwZa007',
+    image: 'assets/images/netflix_profile_3.jpg',
   ),
   ProfileDetailEntity(
-    name: 'User IV',
-    image: 'assets/images/turtwig.png',
+    id: 4,
+    name: '🤍',
+    image: 'assets/images/netflix_profile_4.jpg',
   ),
   ProfileDetailEntity(
-    name: 'User V',
-    image: 'assets/images/snivy.png',
+    id: 5,
+    name: 'sikky3',
+    image: 'assets/images/netflix_profile_5.jpg',
   ),
 ];

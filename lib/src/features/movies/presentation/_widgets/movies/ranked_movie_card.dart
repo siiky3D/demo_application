@@ -12,7 +12,7 @@ class RankedMovieCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final isAddedToMyFavorite = ValueNotifier<bool>(false);
-
+    final locale = AppLocalizations.of(context);
     return Container(
       height: size.height * 0.45.h,
       width: size.width * 0.75.w,
@@ -47,7 +47,7 @@ class RankedMovieCard extends StatelessWidget {
                       final snackBar = SnackBar(
                         backgroundColor: context.colors.primary,
                         content: Text(
-                          'ขออภัย ฟังก์ชันนี้ยังไม่พร้อมใช้งาน',
+                          locale.sorryThisFunctionIsNotAvailable,
                           style:
                               context.appTheme.typographies.bodyLarge.copyWith(
                             color: context.colors.textOnPrimary,
@@ -67,7 +67,7 @@ class RankedMovieCard extends StatelessWidget {
                           ),
                           gapW4,
                           Text(
-                            'เล่น',
+                            locale.play,
                             style: context.appTheme.typographies.headingSmall
                                 .copyWith(color: context.colors.background),
                             textAlign: TextAlign.center,
@@ -107,7 +107,7 @@ class RankedMovieCard extends StatelessWidget {
                               ),
                               gapW4,
                               Text(
-                                'รายการของฉัน',
+                                locale.myList,
                                 style:
                                     context.appTheme.typographies.headingSmall,
                                 textAlign: TextAlign.center,

@@ -7,7 +7,8 @@ import 'package:netflix_clone/injector.dart';
 import 'package:netflix_clone/src/core/config/routes/app_router.dart';
 import 'package:netflix_clone/src/core/l10n/l10n.dart';
 import 'package:netflix_clone/src/core/theme/bloc/themes_bloc.dart';
-import 'package:netflix_clone/src/features/authentication/presentation/blocs/auth/authentication_bloc.dart';
+import 'package:netflix_clone/src/features/authentication/presentation/states/auth/authentication_bloc.dart';
+import 'package:netflix_clone/src/features/authentication/presentation/states/profile_selection/profile_selection_cubit.dart';
 
 class App extends StatelessWidget {
   const App({super.key});
@@ -22,6 +23,9 @@ class App extends StatelessWidget {
         BlocProvider<ThemesBloc>(
           create: (context) => injector<ThemesBloc>(),
         ),
+        BlocProvider<ProfileSelectionCubit>(
+          create: (context) => injector<ProfileSelectionCubit>(),
+        ),
       ],
       child: ScreenUtilInit(
         builder: (context, child) {
@@ -31,6 +35,7 @@ class App extends StatelessWidget {
                 ThemesInitial() => MaterialApp.router(
                     routerConfig: goRouter(context),
                     restorationScopeId: 'app',
+                    locale: const Locale('th', 'TH'),
                     localizationsDelegates:
                         AppLocalizations.localizationsDelegates,
                     supportedLocales: AppLocalizations.supportedLocales,
