@@ -1,94 +1,42 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
-import 'package:netflix_clone/injector.dart';
-import 'package:netflix_clone/src/core/common_widgets/buttons/retry_button.dart';
 import 'package:netflix_clone/src/core/common_widgets/card/movie_card.dart';
 import 'package:netflix_clone/src/core/common_widgets/indicator/base_indicator.dart';
+import 'package:netflix_clone/src/core/config/constants/app_constants.dart';
+import 'package:netflix_clone/src/core/config/constants/app_sizes.dart';
 import 'package:netflix_clone/src/core/config/routes/app_router.dart';
+import 'package:netflix_clone/src/core/theme/extensions.dart';
 import 'package:netflix_clone/src/features/movies/domain/entities/movie_detail/movie_detail_entity.dart';
-import 'package:netflix_clone/src/features/movies/presentation/blocs/movie/get_popular_movies/get_popular_movies_bloc.dart';
-import 'package:netflix_clone/src/features/movies/presentation/blocs/movie/get_top_rated_movies/get_top_rated_movies_bloc.dart';
+import 'package:netflix_clone/src/features/movies/presentation/_widgets/movies/movie_card.dart';
 
 part '../../_widgets/movies/movie_listing_widget.dart';
+part '../../_widgets/movies/ranked_movie_card.dart';
 
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
 
   @override
+  State<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
+  @override
   Widget build(BuildContext context) {
-    return MultiBlocProvider(
-      providers: [
-        BlocProvider<GetPopularMoviesBloc>(
-          create: (context) => injector<GetPopularMoviesBloc>(),
-        ),
-        BlocProvider<GetTopRatedMoviesBloc>(
-          create: (context) => injector<GetTopRatedMoviesBloc>(),
-        ),
-      ],
-      child: Scaffold(
-        body: Column(
-          children: [
-            BlocBuilder<GetPopularMoviesBloc, GetPopularMoviesState>(
-              builder: (context, getPopularMoviesState) {
-                if (getPopularMoviesState is GetPopularMoviesError) {
-                  return Padding(
-                    padding: const EdgeInsets.all(12).r,
-                    child: RetryButton(
-                      text: getPopularMoviesState.message,
-                      retryAction: () => context
-                          .read<GetPopularMoviesBloc>()
-                          .add(const FetchPopularMovies()),
-                    ),
-                  );
-                }
-
-                if (getPopularMoviesState is GetPopularMoviesLoaded) {
-                  return _MovieListingWidget(
-                    hasReachedMax:
-                        context.watch<GetPopularMoviesBloc>().hasReachedMax,
-                    movies: getPopularMoviesState.movies,
-                    whenScrollBottom: () async => context
-                        .read<GetPopularMoviesBloc>()
-                        .add(const FetchPopularMovies()),
-                  );
-                }
-
-                return const BaseIndicator();
-              },
-            ),
-            BlocBuilder<GetTopRatedMoviesBloc, GetTopRatedMoviesState>(
-              builder: (context, getTopRatedMoviesState) {
-                if (getTopRatedMoviesState is GetTopRatedMoviesError) {
-                  return Padding(
-                    padding: const EdgeInsets.all(12).r,
-                    child: RetryButton(
-                      text: getTopRatedMoviesState.message,
-                      retryAction: () => context
-                          .read<GetTopRatedMoviesBloc>()
-                          .add(const FetchTopRatedMovies()),
-                    ),
-                  );
-                }
-
-                if (getTopRatedMoviesState is GetTopRatedMoviesLoaded) {
-                  return _MovieListingWidget(
-                    hasReachedMax:
-                        context.watch<GetTopRatedMoviesBloc>().hasReachedMax,
-                    movies: getTopRatedMoviesState.movies,
-                    whenScrollBottom: () async =>
-                        context.read<GetTopRatedMoviesBloc>()
-                          ..add(const FetchTopRatedMovies()),
-                  );
-                }
-
-                return const BaseIndicator();
-              },
-            ),
-          ],
-        ),
+    final size = MediaQuery.sizeOf(context);
+    return SingleChildScrollView(
+      child: Column(
+        children: [
+          RankedMovieCard(size: size),
+          gapH16,
+          const MovieCard2(
+            imageUrl: AppConstants.movieImage,
+            isNetflixOriginal: true,
+            isTop10: true,
+            isNewRelease: true,
+          ),
+        ],
       ),
     );
   }

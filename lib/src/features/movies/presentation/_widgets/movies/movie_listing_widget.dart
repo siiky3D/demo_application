@@ -32,7 +32,6 @@ class _MovieListingWidget extends HookWidget {
     useEffect(
       () {
         scrollController.addListener(listener);
-
         return () => scrollController.removeListener(listener);
       },
       [],

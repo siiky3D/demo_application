@@ -64,3 +64,61 @@
 //         ),
 //       ];
 // }
+
+
+// BlocBuilder<GetPopularMoviesBloc, GetPopularMoviesState>(
+          //   builder: (context, getPopularMoviesState) {
+          //     if (getPopularMoviesState is GetPopularMoviesError) {
+          //       return Padding(
+          //         padding: const EdgeInsets.all(12).r,
+          //         child: RetryButton(
+          //           text: getPopularMoviesState.message,
+          //           retryAction: () => context
+          //               .read<GetPopularMoviesBloc>()
+          //               .add(const FetchPopularMovies()),
+          //         ),
+          //       );
+          //     }
+
+          //     if (getPopularMoviesState is GetPopularMoviesLoaded) {
+          //       return _MovieListingWidget(
+          //         hasReachedMax:
+          //             context.watch<GetPopularMoviesBloc>().hasReachedMax,
+          //         movies: getPopularMoviesState.movies,
+          //         whenScrollBottom: () async => context
+          //             .read<GetPopularMoviesBloc>()
+          //             .add(const FetchPopularMovies()),
+          //       );
+          //     }
+
+          //     return const BaseIndicator();
+          //   },
+          // ),
+          // BlocBuilder<GetTopRatedMoviesBloc, GetTopRatedMoviesState>(
+          //   builder: (context, getTopRatedMoviesState) {
+          //     if (getTopRatedMoviesState is GetTopRatedMoviesError) {
+          //       return Padding(
+          //         padding: const EdgeInsets.all(12).r,
+          //         child: RetryButton(
+          //           text: getTopRatedMoviesState.message,
+          //           retryAction: () => context
+          //               .read<GetTopRatedMoviesBloc>()
+          //               .add(const FetchTopRatedMovies()),
+          //         ),
+          //       );
+          //     }
+
+          //     if (getTopRatedMoviesState is GetTopRatedMoviesLoaded) {
+          //       return _MovieListingWidget(
+          //         hasReachedMax:
+          //             context.watch<GetTopRatedMoviesBloc>().hasReachedMax,
+          //         movies: getTopRatedMoviesState.movies,
+          //         whenScrollBottom: () async =>
+          //             context.read<GetTopRatedMoviesBloc>()
+          //               ..add(const FetchTopRatedMovies()),
+          //       );
+          //     }
+
+          //     return const BaseIndicator();
+          //   },
+          // ),

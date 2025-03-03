@@ -1,4 +1,5 @@
 import 'package:equatable/equatable.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
 import 'package:netflix_clone/src/features/movies/domain/entities/movie_detail/movie_detail_entity.dart';
@@ -50,5 +51,11 @@ class GetPopularMoviesBloc
         emit(GetPopularMoviesLoaded(movies: List.of(_movieList)));
       },
     );
+  }
+
+  @override
+  Future<void> close() {
+    debugPrint('🔥 GetPopularMoviesBloc ถูกปิดแล้ว!');
+    return super.close();
   }
 }

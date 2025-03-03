@@ -229,20 +229,16 @@ class BuildActions extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: Sizes.p16),
       child: Row(
         children: [
-          Visibility(
-            visible: currentIndex != 1,
-            child: IconButton(
+          if (currentIndex != 1)
+            IconButton(
               onPressed: () {},
               icon: const Icon(Icons.cast),
             ),
-          ),
-          Visibility(
-            visible: currentIndex != 1,
-            child: IconButton(
+          if (currentIndex != 1)
+            IconButton(
               onPressed: () {},
               icon: const Icon(Icons.download),
             ),
-          ),
           IconButton(
             onPressed: () {},
             icon: currentIndex == 3
