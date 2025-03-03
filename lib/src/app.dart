@@ -8,8 +8,6 @@ import 'package:netflix_clone/src/core/config/routes/app_router.dart';
 import 'package:netflix_clone/src/core/l10n/l10n.dart';
 import 'package:netflix_clone/src/core/theme/bloc/themes_bloc.dart';
 import 'package:netflix_clone/src/features/authentication/presentation/blocs/auth/authentication_bloc.dart';
-import 'package:netflix_clone/src/features/movies/presentation/blocs/movie/get_popular_movies/get_popular_movies_bloc.dart';
-import 'package:netflix_clone/src/features/movies/presentation/blocs/movie/get_top_rated_movies/get_top_rated_movies_bloc.dart';
 
 class App extends StatelessWidget {
   const App({super.key});

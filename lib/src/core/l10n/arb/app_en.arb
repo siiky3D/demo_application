@@ -1,7 +1,15 @@
 {
-    "@@locale": "en",
-    "counterAppBarTitle": "Counter",
-    "@counterAppBarTitle": {
-        "description": "Text shown in the AppBar of the Counter Page"
-    }
+  "@@locale": "en",
+  "sorryThisFunctionIsNotAvailable": "Sorry, this function is not available",
+  "play": "Play",
+  "myList": "My List",
+  "@sorryThisFunctionIsNotAvailable": {
+    "description": "Text shown when a function is unavailable"
+  },
+  "@play": {
+    "description": "Text shown as a button or action to play"
+  },
+  "@myList": {
+    "description": "Text shown as a button or action for the user's list"
+  }
 }

@@ -5,8 +5,8 @@ import 'package:netflix_clone/src/core/theme/colors.dart';
 import 'package:netflix_clone/src/core/theme/extensions.dart';
 import 'package:shimmer/shimmer.dart';
 
-class MovieCard2 extends StatelessWidget {
-  const MovieCard2({
+class MovieCard extends StatelessWidget {
+  const MovieCard({
     required this.imageUrl,
     super.key,
     this.isNetflixOriginal = false,
@@ -24,22 +24,25 @@ class MovieCard2 extends StatelessWidget {
 
     return Stack(
       children: [
-        CachedNetworkImage(
-          imageUrl: imageUrl,
-          width: size.width * 0.25.w,
-          height: size.height * 0.15.h,
-          fit: BoxFit.cover,
-          placeholder: (context, url) => Shimmer.fromColors(
-            baseColor: Colors.grey[800]!,
-            highlightColor: Colors.grey[600]!,
-            child: Container(
-              width: double.infinity,
-              height: 300,
-              color: Colors.grey[800],
+        ClipRRect(
+          borderRadius: BorderRadius.circular(8),
+          child: CachedNetworkImage(
+            imageUrl: imageUrl,
+            width: size.width * 0.25.w,
+            height: size.height * 0.15.h,
+            fit: BoxFit.cover,
+            placeholder: (context, url) => Shimmer.fromColors(
+              baseColor: Colors.grey[800]!,
+              highlightColor: Colors.grey[600]!,
+              child: Container(
+                width: double.infinity,
+                height: 300,
+                color: Colors.grey[800],
+              ),
             ),
+            errorWidget: (context, url, error) =>
+                const Icon(Icons.error, color: Colors.red),
           ),
-          errorWidget: (context, url, error) =>
-              const Icon(Icons.error, color: Colors.red),
         ),
         if (isNetflixOriginal)
           Positioned(

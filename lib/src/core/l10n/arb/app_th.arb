@@ -1,0 +1,15 @@
+{
+  "@@locale": "th",
+  "sorryThisFunctionIsNotAvailable": "ขออภัย ฟังก์ชันนี้ยังไม่พร้อมใช้งาน",
+  "play": "เล่น",
+  "myList": "รายการของฉัน",
+  "@sorryThisFunctionIsNotAvailable": {
+    "description": "ข้อความที่แสดงเมื่อฟังก์ชันยังไม่พร้อมใช้งาน"
+  },
+  "@play": {
+    "description": "ข้อความที่แสดงเป็นปุ่มหรือการกระทำเพื่อเล่น"
+  },
+  "@myList": {
+    "description": "ข้อความที่แสดงเป็นปุ่มหรือการกระทำสำหรับรายการของผู้ใช้"
+  }
+}

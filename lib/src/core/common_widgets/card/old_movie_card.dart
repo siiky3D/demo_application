@@ -5,8 +5,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:netflix_clone/src/core/common_widgets/image/base_network_image.dart';
 import 'package:netflix_clone/src/features/movies/domain/entities/movie_detail/movie_detail_entity.dart';
 
-class MovieCard extends StatelessWidget {
-  const MovieCard({super.key, this.movie});
+class OldMovieCard extends StatelessWidget {
+  const OldMovieCard({super.key, this.movie});
   final MovieDetailEntity? movie;
 
   @override
