@@ -6,8 +6,8 @@ import 'package:netflix_clone/src/core/l10n/l10n.dart';
 import 'package:netflix_clone/src/core/theme/colors.dart';
 import 'package:netflix_clone/src/core/theme/extensions.dart';
 import 'package:netflix_clone/src/core/widgets/modal/profile_selection_modal.dart';
-import 'package:netflix_clone/src/features/authentication/presentation/states/profile_selection/profile_selection_cubit.dart';
-import 'package:netflix_clone/src/features/authentication/presentation/widgets/profile_management/profile_action_card.dart';
+import 'package:netflix_clone/src/features/auth/presentation/states/profile_selection/profile_selection_cubit.dart';
+import 'package:netflix_clone/src/features/auth/presentation/widgets/profile_management/profile_action_card.dart';
 import 'package:netflix_clone/src/features/movies/presentation/widgets/movies/category_movie_list.dart';
 
 class ProfileManagementScreen extends StatelessWidget {

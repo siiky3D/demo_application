@@ -1,4 +1,4 @@
-import 'package:netflix_clone/src/features/authentication/domain/entities/profile_management/profile_detail.dart';
+import 'package:netflix_clone/src/features/auth/domain/entities/profile_management/profile_detail.dart';
 
 const List<ProfileDetailEntity> profiles = [
   ProfileDetailEntity(

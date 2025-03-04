@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:netflix_clone/src/core/config/constants/app_sizes.dart';
 import 'package:netflix_clone/src/core/theme/colors.dart';
 import 'package:netflix_clone/src/core/theme/extensions.dart';
-import 'package:netflix_clone/src/features/authentication/domain/entities/export_entities.dart';
+import 'package:netflix_clone/src/features/auth/domain/entities/export_entities.dart';
 
 class ProfileSelectionCard extends StatelessWidget {
   const ProfileSelectionCard(this.profiles, {super.key});

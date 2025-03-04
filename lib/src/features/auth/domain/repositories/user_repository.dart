@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import 'package:injectable/injectable.dart';
-import 'package:netflix_clone/src/features/authentication/domain/entities/export_entities.dart';
+import 'package:netflix_clone/src/features/auth/domain/entities/export_entities.dart';
 import 'package:uuid/uuid.dart';
 
 @lazySingleton

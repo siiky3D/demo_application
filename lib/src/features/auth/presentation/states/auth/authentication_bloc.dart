@@ -1,9 +1,9 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
-import 'package:netflix_clone/src/features/authentication/domain/entities/export_entities.dart';
-import 'package:netflix_clone/src/features/authentication/domain/repositories/authentication_repository.dart';
-import 'package:netflix_clone/src/features/authentication/domain/repositories/user_repository.dart';
+import 'package:netflix_clone/src/features/auth/domain/entities/export_entities.dart';
+import 'package:netflix_clone/src/features/auth/domain/repositories/authentication_repository.dart';
+import 'package:netflix_clone/src/features/auth/domain/repositories/user_repository.dart';
 
 part 'authentication_event.dart';
 part 'authentication_state.dart';
