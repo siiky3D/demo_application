@@ -15,13 +15,10 @@ class GetPopularMoviesBloc
     on<FetchPopularMovies>(_onFetchPopularMovies);
   }
 
-  /// The list of popular movie details.
   final List<MovieDetailEntity> _movieList = [];
 
-  /// The current page number for fetching popular movies.
   int _page = 1;
 
-  /// A flag indicating whether the maximum number of movies has been reached.
   bool hasReachedMax = false;
 
   final MovieUsecases _movieUsecases;
@@ -38,11 +35,15 @@ class GetPopularMoviesBloc
 
     final result = await _movieUsecases.getPopularMovies(page: _page);
     result.fold(
-      (error) => emit(GetPopularMoviesError(message: error.message)),
+      (error) {
+        debugPrint('Error occurred: $error');
+        emit(GetPopularMoviesError(message: error.message));
+      },
       (success) {
         _page++;
         _movieList.addAll(
-          success.movies?.where(_movieList.contains) ?? [],
+          // success.movies?.where(_movieList.contains) ?? [],
+          success.movies ?? [],
         );
 
         if ((success.movies?.length ?? 0) < 20) {
@@ -51,11 +52,5 @@ class GetPopularMoviesBloc
         emit(GetPopularMoviesLoaded(movies: List.of(_movieList)));
       },
     );
-  }
-
-  @override
-  Future<void> close() {
-    debugPrint('🔥 GetPopularMoviesBloc ถูกปิดแล้ว!');
-    return super.close();
   }
 }

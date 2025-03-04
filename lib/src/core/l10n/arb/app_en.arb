@@ -21,8 +21,16 @@
   "switchProfile": "Switch Profile",
   "manageProfile": "Manage Profile",
   "downloaded": "Downloaded Content",
-  "downloadedDesc": "Movies and shows you've downloaded will\nappear here",
+  "downloadedDesc": "Movies and shows you've downloaded\nwill appear here",
   "@downloaded": {
     "description": "Movies and shows you've downloaded will appear here"
-  }
+  },
+  "search": "Search",
+  "searchHint": "Find movies, TV shows, and more",
+  "@search": {
+    "description": "Text shown in the search field"
+  },
+  "loading": "Loading...",
+  "error": "Error",
+  "retry": "Retry"
 }

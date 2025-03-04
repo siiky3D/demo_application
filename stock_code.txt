@@ -122,3 +122,12 @@
           //     return const BaseIndicator();
           //   },
           // ),
+
+          Future<Either<NetworkException, MovieListingsEntity>>
+    _getMoviesFromMockData() async {
+  final response =
+      await rootBundle.loadString('assets/mock/movie_listings_dummy_data.json');
+  final data = json.decode(response) as Map<String, dynamic>;
+  final movieListingsModel = MovieListingsModel.fromJson(data);
+  return Right(movieListingsModel.toEntity());
+}

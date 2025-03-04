@@ -9,8 +9,8 @@ import 'package:netflix_clone/src/core/theme/colors.dart';
 import 'package:netflix_clone/src/core/theme/extensions.dart';
 import 'package:netflix_clone/src/features/authentication/data/profile_managements.dart';
 import 'package:netflix_clone/src/features/authentication/domain/entities/profile_management/profile_detail.dart';
-import 'package:netflix_clone/src/features/authentication/presentation/_widgets/selection_card.dart';
 import 'package:netflix_clone/src/features/authentication/presentation/states/profile_selection/profile_selection_cubit.dart';
+import 'package:netflix_clone/src/features/authentication/presentation/widgets/selection_card.dart';
 
 class ProfileSelectionModal extends StatelessWidget {
   const ProfileSelectionModal({super.key});

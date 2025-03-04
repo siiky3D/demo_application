@@ -1,15 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
-import 'package:netflix_clone/src/core/config/constants/app_constants.dart';
 import 'package:netflix_clone/src/core/config/constants/app_sizes.dart';
 import 'package:netflix_clone/src/core/config/routes/app_router.dart';
 import 'package:netflix_clone/src/features/movies/domain/entities/movie_detail/movie_detail_entity.dart';
 import 'package:netflix_clone/src/features/movies/presentation/_widgets/movies/movie_card.dart';
 import 'package:netflix_clone/src/features/movies/presentation/pages/home/home_screen.dart';
 
-class MovieListingWidget extends HookWidget {
+class MovieListingWidget extends StatefulWidget {
   const MovieListingWidget({
     required this.movies,
     required this.whenScrollBottom,
@@ -22,33 +20,43 @@ class MovieListingWidget extends HookWidget {
   final bool hasReachedMax;
 
   @override
+  State<MovieListingWidget> createState() => _MovieListingWidgetState();
+}
+
+class _MovieListingWidgetState extends State<MovieListingWidget> {
+  final scrollController = ScrollController();
+
+  void _scrollListener() {
+    final isBottom =
+        scrollController.position.maxScrollExtent == scrollController.offset &&
+            scrollController.position.pixels ==
+                scrollController.position.maxScrollExtent;
+
+    if (isBottom) {
+      widget.whenScrollBottom();
+    }
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    scrollController.addListener(_scrollListener);
+  }
+
+  @override
+  void dispose() {
+    scrollController
+      ..removeListener(_scrollListener)
+      ..dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     final size = MediaQuery.sizeOf(context);
 
-    final scrollController = useScrollController();
-    useAutomaticKeepAlive();
-
-    final listener = useMemoized(() => () async {
-          final isBottom = scrollController.position.maxScrollExtent ==
-                  scrollController.offset &&
-              scrollController.position.pixels ==
-                  scrollController.position.maxScrollExtent;
-
-          if (isBottom) {
-            whenScrollBottom.call();
-          }
-        });
-
-    useEffect(
-      () {
-        scrollController.addListener(listener);
-        return () => scrollController.removeListener(listener);
-      },
-      [],
-    );
-
-    final isLoading = movies == null || movies!.isEmpty;
-    const shimmerItemCount = 5;
+    final isLoading = widget.movies == null || widget.movies!.isEmpty;
+    final shimmerItemCount = widget.movies?.length ?? 5;
 
     return SizedBox(
       height: size.height * 0.15.h,
@@ -57,7 +65,7 @@ class MovieListingWidget extends HookWidget {
         controller: scrollController,
         padding: const EdgeInsets.symmetric(horizontal: Sizes.p16).w,
         physics: const PageScrollPhysics(parent: BouncingScrollPhysics()),
-        itemCount: isLoading ? shimmerItemCount : movies!.length,
+        itemCount: isLoading ? shimmerItemCount : widget.movies!.length,
         itemBuilder: (_, index) {
           if (isLoading) {
             return const ShimmerMovieCard();
@@ -66,16 +74,18 @@ class MovieListingWidget extends HookWidget {
           return GestureDetector(
             onTap: () => context.pushNamed(
               AppRoute.movieDetail.name,
-              pathParameters: {'id': movies?[index].id.toString() ?? '0'},
-              extra: movies?[index],
+              pathParameters: {
+                'id': widget.movies?[index].id.toString() ?? '0'
+              },
+              extra: widget.movies?[index],
             ),
             // child: Hero(tag: tag, child: OldMovieCard(movie: movies?[index])),
             child: Hero(
               tag: tag,
               child: Container(
                 margin: const EdgeInsets.only(right: Sizes.p8).w,
-                child: const MovieCard(
-                  imageUrl: AppConstants.movieImage,
+                child: MovieCard(
+                  movie: widget.movies?[index] ?? const MovieDetailEntity(),
                   isNetflixOriginal: true,
                   isTop10: true,
                   isNewRelease: true,

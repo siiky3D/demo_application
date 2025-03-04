@@ -46,7 +46,7 @@ import 'src/features/movies/presentation/states/movie/get_popular_movies/get_pop
     as _i531;
 import 'src/features/movies/presentation/states/movie/get_top_rated_movies/get_top_rated_movies_bloc.dart'
     as _i218;
-import 'src/features/movies/presentation/states/movie/get_up_coming_movies/get_up_coming_movies_bloc.dart'
+import 'src/features/movies/presentation/states/movie/get_upcoming_movies/get_upcoming_movies_bloc.dart'
     as _i22;
 
 extension GetItInjectableX on _i174.GetIt {
@@ -76,7 +76,7 @@ extension GetItInjectableX on _i174.GetIt {
     gh.lazySingleton<_i807.MovieLocalDataSource>(
         () => _i517.MovieLocalDataSourceImpl(gh<_i1040.LocalDatabase>()));
     gh.lazySingleton<_i302.MovieRemoteDataSource>(
-        () => _i814.MovieRemoteDataSourceImpl(gh<_i1005.ApiClient>()));
+        () => _i814.MovieRemoteDataSourceImpl(gh<_i878.DioClient>()));
     gh.lazySingleton<_i921.AuthenticationBloc>(() => _i921.AuthenticationBloc(
           authenticationRepository: gh<_i992.AuthenticationRepository>(),
           userRepository: gh<_i78.UserRepository>(),

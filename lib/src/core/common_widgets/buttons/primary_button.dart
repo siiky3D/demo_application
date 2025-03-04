@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:netflix_clone/src/core/config/constants/app_sizes.dart';
+import 'package:netflix_clone/src/core/theme/extensions.dart';
 
 /// Primary button based on [ElevatedButton]. Useful for CTAs in the app.
 class PrimaryButton extends StatelessWidget {
@@ -26,10 +27,9 @@ class PrimaryButton extends StatelessWidget {
             : Text(
                 text,
                 textAlign: TextAlign.center,
-                style: Theme.of(context)
-                    .textTheme
-                    .titleLarge!
-                    .copyWith(color: Colors.white),
+                style: context.appTheme.typographies.headingSmall.copyWith(
+                  color: context.appTheme.colors.error,
+                ),
               ),
       ),
     );

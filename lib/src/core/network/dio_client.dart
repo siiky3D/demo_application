@@ -41,6 +41,8 @@ class DioClient {
             onRequest: (options, handler) async {
               // Check for token refresh logic
               // If expired, refresh token
+              print('Before Request Base URL: ${options.baseUrl}');
+
               return handler.next(options);
             },
             onResponse: (response, handler) {
@@ -60,7 +62,6 @@ class DioClient {
       );
     apiClient = ApiClient(_dio);
   }
-
   late final Dio _dio;
   late final ApiClient apiClient;
 }

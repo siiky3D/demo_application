@@ -46,16 +46,15 @@ enum AppRoute {
 
 GoRouter goRouter(BuildContext context) {
   return GoRouter(
-    initialLocation: '/account',
+    initialLocation: '/',
     debugLogDiagnostics: true,
     navigatorKey: _rootNavigatorKey,
-    // * redirect logic based on the authentication state
     redirect: (context, state) async {
       final authState = context.read<AuthenticationBloc>().state;
       final path = state.uri.path;
       if (path == '/splash' &&
           authState.status == AuthenticationStatus.unknown) {
-        return null;
+        return '/login';
       }
       if (authState.status == AuthenticationStatus.unauthenticated) {
         return '/login';
@@ -98,17 +97,8 @@ GoRouter goRouter(BuildContext context) {
                 path: '/home',
                 name: AppRoute.home.name,
                 pageBuilder: (context, state) {
-                  final popularBloc = injector<GetPopularMoviesBloc>();
-                  final topRatedBloc = injector<GetTopRatedMoviesBloc>();
-
-                  return NoTransitionPage<void>(
-                    child: MultiBlocProvider(
-                      providers: [
-                        BlocProvider.value(value: popularBloc),
-                        BlocProvider.value(value: topRatedBloc),
-                      ],
-                      child: HomeScreen(),
-                    ),
+                  return const NoTransitionPage(
+                    child: HomeScreen(),
                   );
                 },
                 routes: [
@@ -172,7 +162,6 @@ GoRouter goRouter(BuildContext context) {
         ],
       ),
     ],
-
     errorBuilder: (context, state) => const NotFoundScreen(),
   );
 }

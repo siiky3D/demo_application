@@ -1,22 +1,31 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:netflix_clone/src/core/config/constants/app_constants.dart';
 import 'package:netflix_clone/src/core/theme/colors.dart';
 import 'package:netflix_clone/src/core/theme/extensions.dart';
+import 'package:netflix_clone/src/features/movies/domain/entities/movie_detail/movie_detail_entity.dart';
 import 'package:shimmer/shimmer.dart';
 
 class MovieCard extends StatelessWidget {
   const MovieCard({
-    required this.imageUrl,
+    required this.movie,
     super.key,
     this.isNetflixOriginal = false,
     this.isTop10 = false,
     this.isNewRelease = false,
   });
-  final String imageUrl;
+  final MovieDetailEntity movie;
   final bool isNetflixOriginal;
   final bool isTop10;
   final bool isNewRelease;
+
+  String getFullImageUrl(String? path) {
+    if (path == null || path.isEmpty) {
+      return 'https://placehold.co/400';
+    }
+    return '${AppConstants.imageUrl}$path';
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +36,7 @@ class MovieCard extends StatelessWidget {
         ClipRRect(
           borderRadius: BorderRadius.circular(8),
           child: CachedNetworkImage(
-            imageUrl: imageUrl,
+            imageUrl: getFullImageUrl(movie.posterPath),
             width: size.width * 0.25.w,
             height: size.height * 0.15.h,
             fit: BoxFit.cover,

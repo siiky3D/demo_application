@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_hooks/flutter_hooks.dart';
 
-class LoginScreen extends HookWidget {
+class LoginScreen extends StatelessWidget {
   const LoginScreen({super.key});
 
   @override
@@ -10,7 +9,7 @@ class LoginScreen extends HookWidget {
   }
 }
 
-class LoginView extends HookWidget {
+class LoginView extends StatelessWidget {
   const LoginView({super.key});
 
   @override

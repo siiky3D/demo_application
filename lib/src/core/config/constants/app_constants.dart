@@ -5,6 +5,8 @@ class AppConstants {
 
   static final apiToken = '${dotenv.env['API_ACCESS_TOKEN']}';
 
+  static const imageUrl = 'https://image.tmdb.org/t/p/w500';
+
   static const movieImage =
       'https://m.media-amazon.com/images/I/71i6L1vZjiL._AC_SL1058_.jpg';
   static const movieImage2 =

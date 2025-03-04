@@ -30,10 +30,9 @@ class ProfileActionCard extends StatelessWidget {
   Widget build(BuildContext context) {
     final locale = AppLocalizations.of(context);
     return Container(
-      width: size.width / 1.25,
-      // height: size.height / 14,
+      width: size.width / 1.15,
       decoration: BoxDecoration(
-        color: AppColors.brightRed,
+        color: AppColors.darkOliveGreen,
         borderRadius: BorderRadius.circular(Sizes.p6),
         border: Border.all(
           color: AppColors.lightGray.withOpacity(0.5),
@@ -60,10 +59,9 @@ class ProfileActionCard extends StatelessWidget {
                     children: [
                       Text(
                         title,
-                        style: const TextStyle(
-                          fontSize: Sizes.p20,
-                          fontWeight: FontWeight.w900,
-                          color: Colors.white,
+                        style:
+                            context.appTheme.typographies.headingSmall.copyWith(
+                          color: context.appTheme.colors.textOnPrimary,
                         ),
                       ),
                       if (isDescription)
@@ -78,7 +76,7 @@ class ProfileActionCard extends StatelessWidget {
                                   desc ?? '',
                                   maxLines: 2,
                                   overflow: TextOverflow.ellipsis,
-                                  style: context.appTheme.typographies.caption
+                                  style: context.appTheme.typographies.bodyLarge
                                       .copyWith(
                                     color: Colors.grey[200],
                                   ),
@@ -96,9 +94,7 @@ class ProfileActionCard extends StatelessWidget {
                   if (isViewAll)
                     Text(
                       locale.viewAll,
-                      style: TextStyle(
-                        fontSize: Sizes.p16,
-                        fontWeight: FontWeight.w900,
+                      style: context.appTheme.typographies.bodyLarge.copyWith(
                         color: Colors.grey[200],
                       ),
                     ),

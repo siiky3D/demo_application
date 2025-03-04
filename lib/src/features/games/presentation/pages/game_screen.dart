@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:netflix_clone/src/core/config/constants/app_sizes.dart';
-import 'package:netflix_clone/src/features/games/presentation/_widgets/game_card_widget.dart';
+import 'package:netflix_clone/src/features/games/presentation/widgets/game_card_widget.dart';
 import 'package:netflix_clone/src/features/movies/presentation/_widgets/movies/category_movie_list.dart';
 
 class GamesScreen extends StatelessWidget {

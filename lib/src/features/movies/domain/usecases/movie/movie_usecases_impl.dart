@@ -1,10 +1,6 @@
-import 'dart:convert';
-
-import 'package:flutter/services.dart';
 import 'package:fpdart/fpdart.dart';
 import 'package:injectable/injectable.dart';
 import 'package:netflix_clone/src/core/exceptions/network/network_exception.dart';
-import 'package:netflix_clone/src/features/movies/data/models/movies_listings/movie_listings_model.dart';
 import 'package:netflix_clone/src/features/movies/domain/entities/movie_detail/movie_detail_entity.dart';
 import 'package:netflix_clone/src/features/movies/domain/entities/movie_listings/movie_listings_entity.dart';
 import 'package:netflix_clone/src/features/movies/domain/repositories/movie/movie_repository.dart';
@@ -19,8 +15,8 @@ class MovieUsecasesImpl implements MovieUsecases {
   Future<Either<NetworkException, MovieListingsEntity>> getPopularMovies({
     required int page,
   }) async {
-    // return _movieRepository.getPopularMovies(page: page);
-    return _getMoviesFromMockData();
+    return _movieRepository.getPopularMovies(page: page);
+    // return _getMoviesFromMockData();
   }
 
   @override
@@ -50,13 +46,4 @@ class MovieUsecasesImpl implements MovieUsecases {
   }) async {
     return _movieRepository.getNowPlayingMovies(page: page);
   }
-}
-
-Future<Either<NetworkException, MovieListingsEntity>>
-    _getMoviesFromMockData() async {
-  final response =
-      await rootBundle.loadString('assets/mock/movie_listings_dummy_data.json');
-  final data = json.decode(response) as Map<String, dynamic>;
-  final movieListingsModel = MovieListingsModel.fromJson(data);
-  return Right(movieListingsModel.toEntity());
 }
