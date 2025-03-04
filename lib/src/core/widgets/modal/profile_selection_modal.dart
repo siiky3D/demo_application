@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-import 'package:netflix_clone/src/core/common_widgets/modal/modal.dart';
 import 'package:netflix_clone/src/core/config/constants/app_sizes.dart';
 import 'package:netflix_clone/src/core/config/routes/app_router.dart';
 import 'package:netflix_clone/src/core/l10n/l10n.dart';
 import 'package:netflix_clone/src/core/theme/colors.dart';
 import 'package:netflix_clone/src/core/theme/extensions.dart';
+import 'package:netflix_clone/src/core/widgets/modal/modal.dart';
 import 'package:netflix_clone/src/features/authentication/data/profile_managements.dart';
 import 'package:netflix_clone/src/features/authentication/domain/entities/profile_management/profile_detail.dart';
 import 'package:netflix_clone/src/features/authentication/presentation/states/profile_selection/profile_selection_cubit.dart';

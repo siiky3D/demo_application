@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:netflix_clone/src/core/common_widgets/modal/profile_selection_modal.dart';
 import 'package:netflix_clone/src/core/config/constants/app_sizes.dart';
 import 'package:netflix_clone/src/core/l10n/l10n.dart';
 import 'package:netflix_clone/src/core/theme/colors.dart';
 import 'package:netflix_clone/src/core/theme/extensions.dart';
-import 'package:netflix_clone/src/features/authentication/presentation/widgets/profile_management/profile_action_card.dart';
+import 'package:netflix_clone/src/core/widgets/modal/profile_selection_modal.dart';
 import 'package:netflix_clone/src/features/authentication/presentation/states/profile_selection/profile_selection_cubit.dart';
-import 'package:netflix_clone/src/features/movies/presentation/_widgets/movies/category_movie_list.dart';
+import 'package:netflix_clone/src/features/authentication/presentation/widgets/profile_management/profile_action_card.dart';
+import 'package:netflix_clone/src/features/movies/presentation/widgets/movies/category_movie_list.dart';
 
 class ProfileManagementScreen extends StatelessWidget {
   const ProfileManagementScreen({super.key});

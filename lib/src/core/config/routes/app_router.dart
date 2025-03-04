@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-import 'package:netflix_clone/injector.dart';
 import 'package:netflix_clone/src/core/config/routes/go_router_refresh_stream.dart';
 import 'package:netflix_clone/src/core/config/routes/not_found_screen.dart';
 import 'package:netflix_clone/src/core/config/routes/scaffold_with_nested_navigation.dart';
@@ -15,8 +14,6 @@ import 'package:netflix_clone/src/features/movies/domain/entities/movie_detail/m
 import 'package:netflix_clone/src/features/movies/presentation/pages/home/home_screen.dart';
 import 'package:netflix_clone/src/features/movies/presentation/pages/movie_detail_screen.dart';
 import 'package:netflix_clone/src/features/movies/presentation/pages/new_and_hot_screen.dart';
-import 'package:netflix_clone/src/features/movies/presentation/states/movie/get_popular_movies/get_popular_movies_bloc.dart';
-import 'package:netflix_clone/src/features/movies/presentation/states/movie/get_top_rated_movies/get_top_rated_movies_bloc.dart';
 import 'package:netflix_clone/src/features/splash/presentation/pages/splash_screen.dart';
 
 /// All the supported routes in the app.

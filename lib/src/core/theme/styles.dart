@@ -12,10 +12,10 @@ class AppThemeStyles {
     this.buttonSmall = const ButtonStyle(
       minimumSize: WidgetStatePropertyAll(Size.zero),
       padding: WidgetStatePropertyAll(
-          EdgeInsets.symmetric(vertical: 4, horizontal: 12)),
+          EdgeInsets.symmetric(vertical: 4, horizontal: 12),),
       shape: WidgetStatePropertyAll(
         RoundedRectangleBorder(
-            borderRadius: BorderRadius.all(Radius.circular(6))),
+            borderRadius: BorderRadius.all(Radius.circular(6)),),
       ),
       textStyle: WidgetStatePropertyAll(
         TextStyle(fontSize: 12, fontWeight: FontWeight.w500, height: 1.3),
@@ -24,10 +24,10 @@ class AppThemeStyles {
     this.buttonMedium = const ButtonStyle(
       minimumSize: WidgetStatePropertyAll(Size.zero),
       padding: WidgetStatePropertyAll(
-          EdgeInsets.symmetric(vertical: 8, horizontal: 24)),
+          EdgeInsets.symmetric(vertical: 8, horizontal: 24),),
       shape: WidgetStatePropertyAll(
         RoundedRectangleBorder(
-            borderRadius: BorderRadius.all(Radius.circular(12))),
+            borderRadius: BorderRadius.all(Radius.circular(12)),),
       ),
       textStyle: WidgetStatePropertyAll(
         TextStyle(fontSize: 16, fontWeight: FontWeight.w500, height: 1.5),
@@ -36,10 +36,10 @@ class AppThemeStyles {
     this.buttonLarge = const ButtonStyle(
       minimumSize: WidgetStatePropertyAll(Size.zero),
       padding: WidgetStatePropertyAll(
-          EdgeInsets.symmetric(vertical: 12, horizontal: 24)),
+          EdgeInsets.symmetric(vertical: 12, horizontal: 24),),
       shape: WidgetStatePropertyAll(
         RoundedRectangleBorder(
-            borderRadius: BorderRadius.all(Radius.circular(12))),
+            borderRadius: BorderRadius.all(Radius.circular(12)),),
       ),
       textStyle: WidgetStatePropertyAll(
         TextStyle(fontSize: 16, fontWeight: FontWeight.w500, height: 1.5),

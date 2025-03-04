@@ -2,7 +2,7 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:netflix_clone/src/core/common_widgets/image/base_network_image.dart';
+import 'package:netflix_clone/src/core/widgets/image/base_network_image.dart';
 import 'package:netflix_clone/src/features/movies/domain/entities/movie_detail/movie_detail_entity.dart';
 
 class OldMovieCard extends StatelessWidget {

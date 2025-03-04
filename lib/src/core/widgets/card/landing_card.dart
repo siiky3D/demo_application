@@ -35,7 +35,7 @@ class LandingCard extends StatelessWidget {
                     AppColors.nearBlack.withOpacity(0.50),
                     AppColors.nearBlack.withOpacity(0.75),
                     AppColors.nearBlack.withOpacity(1),
-                  ]),
+                  ],),
             ),
           ),
           Container(

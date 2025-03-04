@@ -3,18 +3,18 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:netflix_clone/injector.dart';
-import 'package:netflix_clone/src/core/common_widgets/buttons/retry_button.dart';
 import 'package:netflix_clone/src/core/config/constants/app_constants.dart';
 import 'package:netflix_clone/src/core/config/constants/app_sizes.dart';
 import 'package:netflix_clone/src/core/l10n/l10n.dart';
 import 'package:netflix_clone/src/core/theme/colors.dart';
 import 'package:netflix_clone/src/core/theme/extensions.dart';
-import 'package:netflix_clone/src/features/movies/presentation/_widgets/movies/category_movie_list.dart';
+import 'package:netflix_clone/src/core/widgets/buttons/retry_button.dart';
 import 'package:netflix_clone/src/features/movies/presentation/states/movie/export_movie_blocs.dart';
+import 'package:netflix_clone/src/features/movies/presentation/widgets/movies/category_movie_list.dart';
 import 'package:shimmer/shimmer.dart';
 
-part '../../_widgets/movies/ranked_movie_card.dart';
-part '../../_widgets/movies/shimmer_movie_card.dart';
+part '../../widgets/movies/ranked_movie_card.dart';
+part '../../widgets/movies/shimmer_movie_card.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});

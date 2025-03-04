@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:intl/intl.dart';
-import 'package:netflix_clone/src/core/common_widgets/image/base_network_image.dart';
 import 'package:netflix_clone/src/core/extensions/int_extensions.dart';
+import 'package:netflix_clone/src/core/widgets/image/base_network_image.dart';
 import 'package:netflix_clone/src/features/movies/domain/entities/movie_credit/cast_entity.dart';
 import 'package:netflix_clone/src/features/movies/domain/entities/movie_detail/movie_detail_entity.dart';
 
-part '../_widgets/movie_detail/actor_card.dart';
-part '../_widgets/movie_detail/tag_container.dart';
+part '../widgets/movie_detail/actor_card.dart';
+part '../widgets/movie_detail/tag_container.dart';
 
 class MovieDetailScreen extends StatelessWidget {
   const MovieDetailScreen({
