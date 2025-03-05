@@ -43,7 +43,7 @@ enum AppRoute {
 
 GoRouter goRouter(BuildContext context) {
   return GoRouter(
-    initialLocation: '/',
+    initialLocation: '/home',
     debugLogDiagnostics: true,
     navigatorKey: _rootNavigatorKey,
     redirect: (context, state) async {

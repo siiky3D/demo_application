@@ -1,4 +1,4 @@
-export '../movie/get_now_playing_movies/get_now_playing_movies_bloc.dart';
-export '../movie/get_popular_movies/get_popular_movies_bloc.dart';
-export '../movie/get_top_rated_movies/get_top_rated_movies_bloc.dart';
-export '../movie/get_upcoming_movies/get_upcoming_movies_bloc.dart';
+export 'now_playing_movies/now_playing_movies_bloc.dart';
+export 'popular_movies/popular_movies_bloc.dart';
+export 'top_rated_movies/top_rated_movies_bloc.dart';
+export 'upcoming_movies/upcoming_movies_bloc.dart';

@@ -1,4 +1,4 @@
-part of 'get_top_rated_movies_bloc.dart';
+part of 'top_rated_movies_bloc.dart';
 
 sealed class GetTopRatedMoviesState extends Equatable {
   const GetTopRatedMoviesState();

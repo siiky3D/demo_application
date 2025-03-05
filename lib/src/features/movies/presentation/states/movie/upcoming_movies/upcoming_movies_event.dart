@@ -1,4 +1,4 @@
-part of 'get_upcoming_movies_bloc.dart';
+part of 'upcoming_movies_bloc.dart';
 
 sealed class GetUpComingMoviesEvent extends Equatable {
   const GetUpComingMoviesEvent();

@@ -1,8 +1,8 @@
-part of 'get_now_playing_movies_bloc.dart';
+part of 'now_playing_movies_bloc.dart';
 
 sealed class GetNowPlayingMoviesState extends Equatable {
   const GetNowPlayingMoviesState();
-  
+
   @override
   List<Object> get props => [];
 }

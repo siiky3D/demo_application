@@ -4,8 +4,8 @@ import 'package:injectable/injectable.dart';
 import 'package:netflix_clone/src/features/movies/domain/entities/movie_detail/movie_detail_entity.dart';
 import 'package:netflix_clone/src/features/movies/domain/usecases/movie/movie_usecases.dart';
 
-part 'get_upcoming_movies_event.dart';
-part 'get_upcoming_movies_state.dart';
+part 'upcoming_movies_event.dart';
+part 'upcoming_movies_state.dart';
 
 @lazySingleton
 class GetUpComingMoviesBloc

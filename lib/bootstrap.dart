@@ -29,23 +29,18 @@ Future<void> bootstrap(FutureOr<Widget> Function() builder) async {
     log(details.exceptionAsString(), stackTrace: details.stack);
   };
 
-  /// Ensure Flutter initialized
   WidgetsFlutterBinding.ensureInitialized();
 
-  /// Initialize Bloc Observer
   Bloc.observer = const AppBlocObserver();
 
-  /// Load .env file
   await dotenv.load();
 
-  /// Initialize Injection
   await configureDependencies();
 
   final directory = HydratedStorageDirectory(
     (await getApplicationDocumentsDirectory()).path,
   );
 
-  /// Initialize HydratedBloc Storage
   HydratedBloc.storage = await HydratedStorage.build(
     storageDirectory: directory,
   );
