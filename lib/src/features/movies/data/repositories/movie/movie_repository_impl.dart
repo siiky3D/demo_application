@@ -15,17 +15,59 @@ import 'package:netflix_clone/src/features/movies/domain/repositories/movie/movi
 
 @LazySingleton(as: MovieRepository)
 class MovieRepositoryImpl implements MovieRepository {
-  MovieRepositoryImpl(this._movieRemoteDataSource, this._movieLocalDataSource);
-  final MovieRemoteDataSource _movieRemoteDataSource;
-  final MovieLocalDataSource _movieLocalDataSource;
+  MovieRepositoryImpl(this._remoteDataSource, this._localDataSource);
+  final MovieRemoteDataSource _remoteDataSource;
+  final MovieLocalDataSource _localDataSource;
 
   //* REMOTE
+
+  @override
+  Future<Either<NetworkException, MovieListingsEntity>> getMovieByType({
+    required int page,
+    required MovieType movieType,
+  }) {
+    switch (movieType) {
+      case MovieType.nowPlaying:
+        return _remoteDataSource.getNowPlayingMovies(page: page).then(
+              (result) => Right<NetworkException, MovieListingsEntity>(
+                result.toEntity(),
+              ).orElse((error) {
+                return Left<NetworkException, MovieListingsEntity>(error);
+              }),
+            );
+      case MovieType.popular:
+        return _remoteDataSource.getPopularMovies(page: page).then(
+              (result) => Right<NetworkException, MovieListingsEntity>(
+                result.toEntity(),
+              ).orElse((error) {
+                return Left<NetworkException, MovieListingsEntity>(error);
+              }),
+            );
+      case MovieType.topRated:
+        return _remoteDataSource.getTopRatedMovies(page: page).then(
+              (result) => Right<NetworkException, MovieListingsEntity>(
+                result.toEntity(),
+              ).orElse((error) {
+                return Left<NetworkException, MovieListingsEntity>(error);
+              }),
+            );
+      case MovieType.upcoming:
+        return _remoteDataSource.getUpcomingMovies(page: page).then(
+              (result) => Right<NetworkException, MovieListingsEntity>(
+                result.toEntity(),
+              ).orElse((error) {
+                return Left<NetworkException, MovieListingsEntity>(error);
+              }),
+            );
+    }
+  }
+
   @override
   Future<Either<NetworkException, MovieDetailEntity>> getMovieDetails({
     required int movieId,
   }) async {
     try {
-      final result = await _movieRemoteDataSource.getMovieDetails(
+      final result = await _remoteDataSource.getMovieDetails(
         movieId: movieId,
       );
       return Right(result.toEntity());
@@ -35,65 +77,13 @@ class MovieRepositoryImpl implements MovieRepository {
   }
 
   @override
-  Future<Either<NetworkException, MovieListingsEntity>> getNowPlayingMovies({
-    required int page,
-  }) async {
-    try {
-      final result = await _movieRemoteDataSource.getNowPlayingMovies(
-        page: page,
-      );
-      return Right(result.toEntity());
-    } on DioException catch (e) {
-      return Left(NetworkException.fromDioError(e));
-    }
-  }
-
-  @override
-  Future<Either<NetworkException, MovieListingsEntity>> getUpcomingMovies({
-    required int page,
-  }) async {
-    try {
-      final result = await _movieRemoteDataSource.getUpcomingMovies(
-        page: page,
-      );
-      return Right(result.toEntity());
-    } on DioException catch (e) {
-      return Left(NetworkException.fromDioError(e));
-    }
-  }
-
-  @override
-  Future<Either<NetworkException, MovieListingsEntity>> getPopularMovies({
-    required int page,
-  }) async {
-    try {
-      final result = await _movieRemoteDataSource.getPopularMovies(page: page);
-
-      return Right(result.toEntity());
-    } on DioException catch (e) {
-      return Left(NetworkException.fromDioError(e));
-    }
-  }
-
-  @override
-  Future<Either<NetworkException, MovieListingsEntity>> getTopRatedMovies({
-    required int page,
-  }) async {
-    try {
-      final result = await _movieRemoteDataSource.getTopRatedMovies(page: page);
-
-      return Right(result.toEntity());
-    } on DioException catch (e) {
-      return Left(NetworkException.fromDioError(e));
-    }
-  }
 
   //* LOCAL
   @override
   Future<Either<DatabaseException, List<MovieDetailEntity>>>
       getSavedMovieDetails() async {
     try {
-      final result = await _movieLocalDataSource.getSavedMovieDetails();
+      final result = await _localDataSource.getSavedMovieDetails();
 
       return Right(result.map((e) => e.toEntity()).toList());
     } on IsarError catch (e) {
@@ -106,7 +96,7 @@ class MovieRepositoryImpl implements MovieRepository {
     required MovieDetailEntity? movieDetailEntity,
   }) async {
     try {
-      final result = await _movieLocalDataSource.saveMovieDetail(
+      final result = await _localDataSource.saveMovieDetail(
         movieDetailCollection:
             MovieDetailCollection().fromEntity(movieDetailEntity),
       );
@@ -122,8 +112,7 @@ class MovieRepositoryImpl implements MovieRepository {
     required int? movieId,
   }) async {
     try {
-      final result =
-          await _movieLocalDataSource.deleteMovieDetail(movieId: movieId);
+      final result = await _localDataSource.deleteMovieDetail(movieId: movieId);
 
       return Right(result);
     } on IsarError catch (e) {
@@ -137,7 +126,7 @@ class MovieRepositoryImpl implements MovieRepository {
   }) async {
     try {
       final result =
-          await _movieLocalDataSource.isSavedMovieDetail(movieId: movieId);
+          await _localDataSource.isSavedMovieDetail(movieId: movieId);
 
       return Right(result);
     } on IsarError catch (e) {

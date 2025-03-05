@@ -8,7 +8,7 @@ import 'package:netflix_clone/injector.config.dart';
 import 'package:netflix_clone/src/core/theme/bloc/themes_bloc.dart';
 import 'package:netflix_clone/src/features/auth/presentation/states/auth/authentication_bloc.dart';
 import 'package:netflix_clone/src/features/auth/presentation/states/profile_selection/profile_selection_cubit.dart';
-import 'package:netflix_clone/src/features/movies/presentation/states/movie/export_movie_blocs.dart';
+import 'package:netflix_clone/src/features/movies/presentation/states/export_movie_blocs.dart';
 
 final injector = GetIt.instance;
 
@@ -41,17 +41,8 @@ class GlobalBlocProviders extends StatelessWidget {
         BlocProvider<ProfileSelectionCubit>(
           create: (context) => injector<ProfileSelectionCubit>(),
         ),
-        BlocProvider<PopularMoviesBloc>(
-          create: (context) => injector<PopularMoviesBloc>()
-            ..add(
-              const GetPopularMoviesloadStarted(),
-            ),
-        ),
-        BlocProvider<GetTopRatedMoviesBloc>(
-          create: (context) => injector<GetTopRatedMoviesBloc>()
-            ..add(
-              const FetchTopRatedMovies(),
-            ),
+        BlocProvider<MoviesBloc>(
+          create: (context) => injector<MoviesBloc>(),
         ),
       ],
       child: child,

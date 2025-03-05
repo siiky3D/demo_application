@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:netflix_clone/src/core/theme/extensions.dart';
 import 'package:netflix_clone/src/core/utils/size.dart';
 
 class AppAppBar extends AppBar {
@@ -116,10 +117,8 @@ class AppMovingTitleSliverAppBar extends SliverAppBar {
               final dx = startX + endX - endX * percent;
 
               return ColoredBox(
-                color:
-                    //TODO: Fix this
-                    // context.colors.background.withOpacity(0.8 - percent * 0.8),
-                    Colors.black,
+                color: context.appTheme.colors.background
+                    .withOpacity(0.8 - percent * 0.8),
                 child: Stack(
                   fit: StackFit.expand,
                   children: <Widget>[

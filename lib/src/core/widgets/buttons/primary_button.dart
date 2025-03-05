@@ -1,37 +1,87 @@
 import 'package:flutter/material.dart';
-import 'package:netflix_clone/src/core/config/constants/app_sizes.dart';
 import 'package:netflix_clone/src/core/theme/extensions.dart';
 
-/// Primary button based on [ElevatedButton]. Useful for CTAs in the app.
+enum ButtonType {
+  elevated,
+  outline,
+}
+
 class PrimaryButton extends StatelessWidget {
-  /// Create a PrimaryButton.
-  /// if [isLoading] is true, a loading indicator will be displayed instead of
-  /// the text.
   const PrimaryButton({
     required this.text,
+    required this.textStyle,
     super.key,
     this.isLoading = false,
     this.onPressed,
+    this.buttonStyle,
+    this.type = ButtonType.elevated,
+    this.prefixIcon,
   });
   final String text;
   final bool isLoading;
   final VoidCallback? onPressed;
+  final TextStyle textStyle;
+  final ButtonStyle? buttonStyle;
+  final ButtonType type;
+  final IconData? prefixIcon;
+
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: Sizes.p48,
-      child: ElevatedButton(
-        onPressed: onPressed,
-        child: isLoading
-            ? const CircularProgressIndicator()
-            : Text(
-                text,
-                textAlign: TextAlign.center,
-                style: context.appTheme.typographies.headingSmall.copyWith(
-                  color: context.appTheme.colors.error,
-                ),
-              ),
-      ),
+      child: type == ButtonType.elevated
+          ? ElevatedButton(
+              style: buttonStyle,
+              onPressed: onPressed,
+              child: isLoading
+                  ? const CircularProgressIndicator()
+                  : Row(
+                      mainAxisSize: MainAxisSize.min,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        if (prefixIcon != null)
+                          Icon(
+                            prefixIcon,
+                            size: 32,
+                            color: context.colors.background,
+                          ),
+                        Flexible(
+                          child: Text(
+                            text,
+                            textAlign: TextAlign.center,
+                            style: textStyle,
+                            overflow: TextOverflow.ellipsis,
+                            maxLines: 1,
+                          ),
+                        ),
+                      ],
+                    ),
+            )
+          : OutlinedButton(
+              style: buttonStyle,
+              onPressed: onPressed,
+              child: isLoading
+                  ? const CircularProgressIndicator()
+                  : Row(
+                      mainAxisSize: MainAxisSize.min,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        if (prefixIcon != null)
+                          Icon(
+                            prefixIcon,
+                            size: 34,
+                            color: context.colors.textOnPrimary,
+                          ),
+                        Flexible(
+                          child: Text(
+                            text,
+                            textAlign: TextAlign.center,
+                            style: textStyle,
+                            maxLines: 1,
+                          ),
+                        ),
+                      ],
+                    ),
+            ),
     );
   }
 }

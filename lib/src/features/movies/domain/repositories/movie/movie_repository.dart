@@ -7,23 +7,9 @@ import 'package:netflix_clone/src/features/movies/domain/entities/movie_listings
 abstract class MovieRepository {
   //* Remote Data Source
 
-  Future<Either<NetworkException, MovieListingsEntity>> getNowPlayingMovies({
+  Future<Either<NetworkException, MovieListingsEntity>> getMovieByType({
     required int page,
-  });
-
-  /// Retrieves the popular movies from the server.
-  Future<Either<NetworkException, MovieListingsEntity>> getPopularMovies({
-    required int page,
-  });
-
-  /// Retrieves the top rated movies from the server.
-  Future<Either<NetworkException, MovieListingsEntity>> getTopRatedMovies({
-    required int page,
-  });
-
-  /// Retrieves the up coming movies from the server.
-  Future<Either<NetworkException, MovieListingsEntity>> getUpcomingMovies({
-    required int page,
+    required MovieType movieType,
   });
 
   /// Retrieves the details for a specific movie from the server.

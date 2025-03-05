@@ -1,6 +1,13 @@
 import 'package:equatable/equatable.dart';
 import 'package:netflix_clone/src/features/movies/domain/entities/movie_detail/movie_detail_entity.dart';
 
+enum MovieType {
+  nowPlaying,
+  popular,
+  topRated,
+  upcoming,
+}
+
 class MovieListingsEntity extends Equatable {
   const MovieListingsEntity({
     this.page,

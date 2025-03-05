@@ -2,9 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:netflix_clone/src/core/config/constants/app_sizes.dart';
 import 'package:netflix_clone/src/core/theme/extensions.dart';
+import 'package:netflix_clone/src/core/widgets/shimmer/shimmer.dart';
 import 'package:netflix_clone/src/features/movies/domain/entities/movie_detail/movie_detail_entity.dart';
-import 'package:netflix_clone/src/features/movies/presentation/pages/home/home_screen.dart';
-import 'package:netflix_clone/src/features/movies/presentation/widgets/movies/movie_listing_widget.dart';
 
 class CategoryMovieList extends StatelessWidget {
   const CategoryMovieList({
@@ -31,10 +30,7 @@ class CategoryMovieList extends StatelessWidget {
           child: Row(
             children: [
               if (isLoading)
-                const ShimmerMovieCard(
-                  height: 30,
-                  width: 120,
-                )
+                const ShimmerPlaceholder()
               else
                 Text(
                   categoryTitle,
@@ -44,11 +40,7 @@ class CategoryMovieList extends StatelessWidget {
           ),
         ),
         gapH8,
-        MovieListingWidget(
-          movies: movies,
-          whenScrollBottom: whenScrollBottom,
-          hasReachedMax: hasReachedMax,
-        ),
+        // const PopularMovieList(),
         gapH32,
       ],
     );

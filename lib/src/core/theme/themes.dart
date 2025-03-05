@@ -70,12 +70,12 @@ class AppTheme extends ThemeExtension<AppTheme> {
             backgroundColor: WidgetStateProperty.resolveWith((states) {
               return states.contains(WidgetState.disabled)
                   ? colors.disabled
-                  : null; // Defer to the widget's default.
+                  : null;
             }),
             foregroundColor: WidgetStateProperty.resolveWith((states) {
               return states.contains(WidgetState.disabled)
                   ? colors.disabled
-                  : null; // Defer to the widget's default.
+                  : null;
             }),
           ),
         ),
@@ -89,7 +89,7 @@ class AppTheme extends ThemeExtension<AppTheme> {
             foregroundColor: WidgetStateProperty.resolveWith((states) {
               return states.contains(WidgetState.disabled)
                   ? colors.disabled
-                  : colors.textOnPrimary; // Defer to the widget's default.
+                  : colors.textOnPrimary;
             }),
           ),
         ),
@@ -103,7 +103,7 @@ class AppTheme extends ThemeExtension<AppTheme> {
             foregroundColor: WidgetStateProperty.resolveWith((states) {
               return states.contains(WidgetState.disabled)
                   ? colors.disabled
-                  : colors.textOnPrimary; // Defer to the widget's default.
+                  : colors.textOnPrimary;
             }),
           ),
         ),

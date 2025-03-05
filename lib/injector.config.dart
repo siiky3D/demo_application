@@ -39,14 +39,8 @@ import 'package:netflix_clone/src/features/movies/domain/usecases/movie/movie_us
     as _i483;
 import 'package:netflix_clone/src/features/movies/domain/usecases/movie/movie_usecases_impl.dart'
     as _i365;
-import 'package:netflix_clone/src/features/movies/presentation/states/movie/now_playing_movies/now_playing_movies_bloc.dart'
-    as _i651;
-import 'package:netflix_clone/src/features/movies/presentation/states/movie/popular_movies/popular_movies_bloc.dart'
-    as _i636;
-import 'package:netflix_clone/src/features/movies/presentation/states/movie/top_rated_movies/top_rated_movies_bloc.dart'
-    as _i829;
-import 'package:netflix_clone/src/features/movies/presentation/states/movie/upcoming_movies/upcoming_movies_bloc.dart'
-    as _i499;
+import 'package:netflix_clone/src/features/movies/presentation/states/movie/movies_bloc.dart'
+    as _i37;
 
 extension GetItInjectableX on _i174.GetIt {
 // initializes the registration of main-scope dependencies inside of GetIt
@@ -64,8 +58,6 @@ extension GetItInjectableX on _i174.GetIt {
     gh.lazySingleton<_i699.LocalDatabase>(() => _i699.LocalDatabase());
     gh.lazySingleton<_i520.DioClient>(() => _i520.DioClient());
     gh.lazySingleton<_i224.ThemesBloc>(() => _i224.ThemesBloc());
-    gh.lazySingleton<_i651.GetNowPlayingMoviesBloc>(
-        () => _i651.GetNowPlayingMoviesBloc());
     gh.lazySingleton<_i77.AuthenticationRepository>(
         () => _i77.AuthenticationRepository());
     gh.lazySingleton<_i627.UserRepository>(() => _i627.UserRepository());
@@ -85,12 +77,8 @@ extension GetItInjectableX on _i174.GetIt {
         ));
     gh.lazySingleton<_i483.MovieUsecases>(
         () => _i365.MovieUsecasesImpl(gh<_i796.MovieRepository>()));
-    gh.lazySingleton<_i636.PopularMoviesBloc>(
-        () => _i636.PopularMoviesBloc(gh<_i483.MovieUsecases>()));
-    gh.lazySingleton<_i829.GetTopRatedMoviesBloc>(
-        () => _i829.GetTopRatedMoviesBloc(gh<_i483.MovieUsecases>()));
-    gh.lazySingleton<_i499.GetUpComingMoviesBloc>(
-        () => _i499.GetUpComingMoviesBloc(gh<_i483.MovieUsecases>()));
+    gh.lazySingleton<_i37.MoviesBloc>(
+        () => _i37.MoviesBloc(gh<_i483.MovieUsecases>()));
     return this;
   }
 }

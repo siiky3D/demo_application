@@ -12,25 +12,11 @@ class MovieUsecasesImpl implements MovieUsecases {
   final MovieRepository _movieRepository;
 
   @override
-  Future<Either<NetworkException, MovieListingsEntity>> getPopularMovies({
+  Future<Either<NetworkException, MovieListingsEntity>> getMoviesByType({
     required int page,
+    required MovieType movieType,
   }) async {
-    return _movieRepository.getPopularMovies(page: page);
-    // return _getMoviesFromMockData();
-  }
-
-  @override
-  Future<Either<NetworkException, MovieListingsEntity>> getTopRatedMovies({
-    required int page,
-  }) async {
-    return _movieRepository.getTopRatedMovies(page: page);
-  }
-
-  @override
-  Future<Either<NetworkException, MovieListingsEntity>> getUpcomingMovies({
-    required int page,
-  }) async {
-    return _movieRepository.getUpcomingMovies(page: page);
+    return _movieRepository.getMovieByType(page: page, movieType: movieType);
   }
 
   @override
@@ -38,12 +24,5 @@ class MovieUsecasesImpl implements MovieUsecases {
     required int movieId,
   }) async {
     return _movieRepository.getMovieDetails(movieId: movieId);
-  }
-
-  @override
-  Future<Either<NetworkException, MovieListingsEntity>> getNowPlayingMovies({
-    required int page,
-  }) async {
-    return _movieRepository.getNowPlayingMovies(page: page);
   }
 }
