@@ -9,6 +9,7 @@ import 'package:netflix_clone/src/core/exceptions/network/network_exception.dart
 import 'package:netflix_clone/src/features/movies/data/data_sources/local/_collections/movie_detail/movie_detail_collection.dart';
 import 'package:netflix_clone/src/features/movies/data/data_sources/local/movie/movie_local_data_source.dart';
 import 'package:netflix_clone/src/features/movies/data/data_sources/remote/movie_remote_data_source.dart';
+import 'package:netflix_clone/src/features/movies/data/models/movies_listings/movie_listings_model.dart';
 import 'package:netflix_clone/src/features/movies/domain/entities/movie_detail/movie_detail_entity.dart';
 import 'package:netflix_clone/src/features/movies/domain/entities/movie_listings/movie_listings_entity.dart';
 import 'package:netflix_clone/src/features/movies/domain/repositories/movie/movie_repository.dart';
@@ -19,8 +20,19 @@ class MovieRepositoryImpl implements MovieRepository {
   final MovieRemoteDataSource _remoteDataSource;
   final MovieLocalDataSource _localDataSource;
 
-  //* REMOTE
+  Future<Either<NetworkException, MovieListingsEntity>> _getMovies(
+    Future<MovieListingsModel> Function(int page) fetchMovies,
+    int page,
+  ) async {
+    try {
+      final result = await fetchMovies(page);
+      return Right<NetworkException, MovieListingsEntity>(result.toEntity());
+    } on DioException catch (e) {
+      return Left(NetworkException.fromDioError(e));
+    }
+  }
 
+  //* REMOTE
   @override
   Future<Either<NetworkException, MovieListingsEntity>> getMovieByType({
     required int page,
@@ -28,37 +40,25 @@ class MovieRepositoryImpl implements MovieRepository {
   }) {
     switch (movieType) {
       case MovieType.nowPlaying:
-        return _remoteDataSource.getNowPlayingMovies(page: page).then(
-              (result) => Right<NetworkException, MovieListingsEntity>(
-                result.toEntity(),
-              ).orElse((error) {
-                return Left<NetworkException, MovieListingsEntity>(error);
-              }),
-            );
+        return _getMovies(
+          (page) => _remoteDataSource.getNowPlayingMovies(page: page),
+          page,
+        );
       case MovieType.popular:
-        return _remoteDataSource.getPopularMovies(page: page).then(
-              (result) => Right<NetworkException, MovieListingsEntity>(
-                result.toEntity(),
-              ).orElse((error) {
-                return Left<NetworkException, MovieListingsEntity>(error);
-              }),
-            );
+        return _getMovies(
+          (page) => _remoteDataSource.getPopularMovies(page: page),
+          page,
+        );
       case MovieType.topRated:
-        return _remoteDataSource.getTopRatedMovies(page: page).then(
-              (result) => Right<NetworkException, MovieListingsEntity>(
-                result.toEntity(),
-              ).orElse((error) {
-                return Left<NetworkException, MovieListingsEntity>(error);
-              }),
-            );
+        return _getMovies(
+          (page) => _remoteDataSource.getTopRatedMovies(page: page),
+          page,
+        );
       case MovieType.upcoming:
-        return _remoteDataSource.getUpcomingMovies(page: page).then(
-              (result) => Right<NetworkException, MovieListingsEntity>(
-                result.toEntity(),
-              ).orElse((error) {
-                return Left<NetworkException, MovieListingsEntity>(error);
-              }),
-            );
+        return _getMovies(
+          (page) => _remoteDataSource.getUpcomingMovies(page: page),
+          page,
+        );
     }
   }
 

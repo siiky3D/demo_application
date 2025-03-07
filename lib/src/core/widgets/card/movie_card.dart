@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:netflix_clone/gen/assets.gen.dart';
 import 'package:netflix_clone/src/core/widgets/image/movie_image.dart';
 import 'package:netflix_clone/src/features/movies/domain/entities/movie_detail/movie_detail_entity.dart';
 
@@ -57,7 +58,7 @@ class MovieCard extends StatelessWidget {
       top: 5,
       left: 5,
       child: Image(
-        image: const AssetImage('assets/images/netflix_symbol.png'),
+        image: AssetImage(Assets.images.netflixSymbol.path),
         width: symbolSize,
         height: symbolSize,
       ),

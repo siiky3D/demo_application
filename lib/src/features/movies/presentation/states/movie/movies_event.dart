@@ -8,7 +8,14 @@ sealed class MoviesEvent extends Equatable {
 }
 
 class MoviesloadStarted extends MoviesEvent {
-  const MoviesloadStarted({required this.movieType});
+  const MoviesloadStarted();
+
+  @override
+  List<Object> get props => [];
+}
+
+class MoviesLoadByType extends MoviesEvent {
+  const MoviesLoadByType({required this.movieType});
 
   final MovieType movieType;
 

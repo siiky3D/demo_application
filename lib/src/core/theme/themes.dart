@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:netflix_clone/gen/fonts.gen.dart';
 import 'package:netflix_clone/src/core/theme/colors.dart';
 import 'package:netflix_clone/src/core/theme/styles.dart';
 
@@ -11,7 +12,7 @@ class AppTheme extends ThemeExtension<AppTheme> {
     required this.colors,
     this.styles = const AppThemeStyles(),
     this.typographies = const AppThemeTypography(),
-    this.fontFamily = 'NotoSansThai',
+    this.fontFamily = FontFamily.notoSansThai,
   });
 
   final String name;

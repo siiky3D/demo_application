@@ -7,8 +7,10 @@ import 'package:injectable/injectable.dart';
 import 'package:netflix_clone/injector.config.dart';
 import 'package:netflix_clone/src/core/theme/bloc/themes_bloc.dart';
 import 'package:netflix_clone/src/features/auth/presentation/states/auth/authentication_bloc.dart';
-import 'package:netflix_clone/src/features/auth/presentation/states/profile_selection/profile_selection_cubit.dart';
+import 'package:netflix_clone/src/features/auth/presentation/states/profiles/profiles_bloc.dart';
 import 'package:netflix_clone/src/features/movies/presentation/states/export_movie_blocs.dart';
+import 'package:netflix_clone/src/features/onboarding/presentation/cubit/onboarding_cubit.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 final injector = GetIt.instance;
 
@@ -19,6 +21,12 @@ Future<void> configureDependencies() async => injector.init();
 abstract class RegisterModule {
   @singleton
   Dio get dio => Dio();
+}
+
+@module
+abstract class SharedPrefsModule {
+  @preResolve
+  Future<SharedPreferences> get prefs => SharedPreferences.getInstance();
 }
 
 class GlobalBlocProviders extends StatelessWidget {
@@ -33,16 +41,21 @@ class GlobalBlocProviders extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider<AuthenticationBloc>(
-          create: (context) => injector<AuthenticationBloc>(),
+          lazy: false,
+          create: (context) => injector<AuthenticationBloc>()
+            ..add(AuthenticationSubscriptionRequested()),
         ),
         BlocProvider<ThemesBloc>(
           create: (context) => injector<ThemesBloc>(),
         ),
-        BlocProvider<ProfileSelectionCubit>(
-          create: (context) => injector<ProfileSelectionCubit>(),
+        BlocProvider<ProfilesBloc>(
+          create: (context) => injector<ProfilesBloc>(),
         ),
         BlocProvider<MoviesBloc>(
           create: (context) => injector<MoviesBloc>(),
+        ),
+        BlocProvider<OnboardingCubit>(
+          create: (context) => injector<OnboardingCubit>(),
         ),
       ],
       child: child,

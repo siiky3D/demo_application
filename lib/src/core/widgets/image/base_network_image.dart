@@ -19,8 +19,6 @@ class BaseNetworkImage extends StatelessWidget {
   Widget build(BuildContext context) {
     return CachedNetworkImage(
       imageUrl: url ?? '',
-      progressIndicatorBuilder: (context, url, progress) =>
-          const BaseIndicator(),
       errorWidget: (_, __, ___) => const BaseIndicator(),
       imageBuilder: (context, imageProvider) {
         return Container(

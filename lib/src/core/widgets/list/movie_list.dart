@@ -5,7 +5,6 @@ import 'package:netflix_clone/src/features/movies/domain/entities/movie_detail/m
 class MoviesList extends StatefulWidget {
   const MoviesList({
     required this.scrollController,
-    required this.onLoadMore,
     required this.onMoviePress,
     required this.itemBuilder,
     required this.itemCount,
@@ -15,7 +14,6 @@ class MoviesList extends StatefulWidget {
   });
 
   final ScrollController scrollController;
-  final void Function() onLoadMore;
   final void Function(MovieDetailEntity) onMoviePress;
   final Widget Function(BuildContext, int) itemBuilder;
   final int itemCount;

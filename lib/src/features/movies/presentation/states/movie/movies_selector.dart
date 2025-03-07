@@ -1,3 +1,6 @@
+// ignore_for_file: avoid_positional_boolean_parameters
+
+import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:netflix_clone/src/features/movies/domain/entities/movie_detail/movie_detail_entity.dart';
@@ -24,11 +27,7 @@ class MoviesStateStatusSelector extends MoviesStateSelector<MovieStatus> {
 class NumberOfMoviesSelector extends MoviesStateSelector<int> {
   NumberOfMoviesSelector(Widget Function(int) builder, {super.key})
       : super(
-          selector: (state) {
-            if (state is MoviesSuccess) return state.movies.length;
-            if (state is MoviesLoadingMore) return state.movies.length;
-            return 0;
-          },
+          selector: (state) => state.movies.length,
           builder: builder,
         );
 }
@@ -38,12 +37,7 @@ class CurrentMoviesSelector extends MoviesStateSelector<MovieDetailEntity> {
     Widget Function(MovieDetailEntity) builder, {
     super.key,
   }) : super(
-          selector: (state) {
-            if (state is MoviesSuccess) {
-              return state.selectedMovie;
-            }
-            return const MovieDetailEntity();
-          },
+          selector: (state) => state.selectedMovie,
           builder: builder,
         );
 }
@@ -55,31 +49,35 @@ class MovieSelector extends MoviesStateSelector<MovieSelectorState> {
     super.key,
   }) : super(
           selector: (state) {
-            if (state is MoviesSuccess &&
-                index >= 0 &&
-                index < state.movies.length) {
-              return MovieSelectorState(
-                state.movies[index],
-                state.selectedMovieIndex == index,
-              );
-            }
-            return const MovieSelectorState(MovieDetailEntity(), false);
+            final isValidIndex = index >= 0 && index < state.movies.length;
+
+            return MovieSelectorState(
+              movie: isValidIndex
+                  ? state.movies[index]
+                  : const MovieDetailEntity(),
+              selected: isValidIndex && state.selectedMovieIndex == index,
+            );
           },
           builder: (value) => builder(value.movie, value.selected),
         );
 }
 
-class MovieSelectorState {
-  const MovieSelectorState(this.movie, this.selected);
+class MovieSelectorState extends Equatable {
+  const MovieSelectorState({
+    required this.movie,
+    this.selected = false,
+  });
+
   final MovieDetailEntity movie;
   final bool selected;
 
-  @override
-  bool operator ==(Object other) =>
-      other is MovieSelectorState &&
-      movie == other.movie &&
-      selected == other.selected;
+  MovieSelectorState copyWith({MovieDetailEntity? movie, bool? selected}) {
+    return MovieSelectorState(
+      movie: movie ?? this.movie,
+      selected: selected ?? this.selected,
+    );
+  }
 
   @override
-  int get hashCode => movie.hashCode ^ selected.hashCode;
+  List<Object> get props => [movie, selected];
 }

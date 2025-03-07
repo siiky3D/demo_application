@@ -4,16 +4,19 @@ import 'package:go_router/go_router.dart';
 import 'package:netflix_clone/src/core/config/routes/go_router_refresh_stream.dart';
 import 'package:netflix_clone/src/core/config/routes/not_found_screen.dart';
 import 'package:netflix_clone/src/core/config/routes/scaffold_with_nested_navigation.dart';
-import 'package:netflix_clone/src/features/auth/domain/repositories/authentication_repository.dart';
+import 'package:netflix_clone/src/features/auth/domain/repositories/auth/authentication_repository.dart';
 import 'package:netflix_clone/src/features/auth/presentation/pages/login/login_screen.dart';
 import 'package:netflix_clone/src/features/auth/presentation/pages/profile_management/profile_management_screen.dart';
 import 'package:netflix_clone/src/features/auth/presentation/pages/profile_selection/profile_selection_screen.dart';
 import 'package:netflix_clone/src/features/auth/presentation/states/auth/authentication_bloc.dart';
+import 'package:netflix_clone/src/features/auth/presentation/states/profiles/profiles_bloc.dart';
 import 'package:netflix_clone/src/features/games/presentation/pages/game_screen.dart';
 import 'package:netflix_clone/src/features/movies/domain/entities/movie_detail/movie_detail_entity.dart';
 import 'package:netflix_clone/src/features/movies/presentation/pages/home/home_screen.dart';
 import 'package:netflix_clone/src/features/movies/presentation/pages/movie_detail_screen.dart';
 import 'package:netflix_clone/src/features/movies/presentation/pages/new_and_hot_screen.dart';
+import 'package:netflix_clone/src/features/onboarding/presentation/cubit/onboarding_cubit.dart';
+import 'package:netflix_clone/src/features/onboarding/presentation/pages/onboarding_screen.dart';
 import 'package:netflix_clone/src/features/splash/presentation/pages/splash_screen.dart';
 
 /// All the supported routes in the app.
@@ -31,6 +34,7 @@ final _accountNavigatorKey = GlobalKey<NavigatorState>(debugLabel: 'account');
 
 enum AppRoute {
   splash,
+  onboarding,
   login,
   profileSelection,
   home,
@@ -46,19 +50,29 @@ GoRouter goRouter(BuildContext context) {
     initialLocation: '/home',
     debugLogDiagnostics: true,
     navigatorKey: _rootNavigatorKey,
-    redirect: (context, state) async {
+    redirect: (context, state) {
       final authState = context.read<AuthenticationBloc>().state;
+      final didCompleteOnboarding = context.read<OnboardingCubit>().state;
+      final hasSelected = context.read<ProfilesBloc>().state.hasSelectedProfile;
       final path = state.uri.path;
-      if (path == '/splash' &&
-          authState.status == AuthenticationStatus.unknown) {
-        return '/login';
-      }
-      if (authState.status == AuthenticationStatus.unauthenticated) {
-        return '/login';
+
+      if (!didCompleteOnboarding) {
+        return path == '/onboarding' ? null : '/onboarding';
       }
 
-      if (authState.status == AuthenticationStatus.authenticated) {
+      if (authState.status == AuthenticationStatus.unauthenticated) {
+        return path == '/login' ? null : '/login';
+      }
+
+      if (authState.status == AuthenticationStatus.authenticated &&
+          path != '/profileSelection' &&
+          !path.startsWith('/home') &&
+          !hasSelected) {
         return '/profileSelection';
+      }
+
+      if (authState.status == AuthenticationStatus.unknown) {
+        return null;
       }
 
       return null;
@@ -71,6 +85,11 @@ GoRouter goRouter(BuildContext context) {
         path: '/splash',
         name: AppRoute.splash.name,
         builder: (context, state) => const SplashScreen(),
+      ),
+      GoRoute(
+        path: '/onboarding',
+        name: AppRoute.onboarding.name,
+        builder: (context, state) => const OnboardingScreen(),
       ),
       GoRoute(
         path: '/login',
@@ -104,15 +123,10 @@ GoRouter goRouter(BuildContext context) {
                     name: AppRoute.movieDetail.name,
                     parentNavigatorKey: _rootNavigatorKey,
                     pageBuilder: (context, state) {
-                      final id = state.pathParameters['id']!;
-                      final heroTag = 'movie_$id';
-                      final movieDetail = state.extra as MovieDetailEntity?;
+                      final movie = state.extra as MovieDetailEntity?;
                       return MaterialPage(
                         fullscreenDialog: true,
-                        child: MovieDetailScreen(
-                          heroTag: heroTag,
-                          movieDetail: movieDetail,
-                        ),
+                        child: MovieDetailScreen(movieDetail: movie),
                       );
                     },
                   ),

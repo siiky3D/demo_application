@@ -1,12 +1,12 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
+import 'package:netflix_clone/gen/assets.gen.dart';
 import 'package:netflix_clone/src/core/config/constants/app_sizes.dart';
 import 'package:netflix_clone/src/core/l10n/l10n.dart';
 import 'package:netflix_clone/src/core/theme/extensions.dart';
-import 'package:netflix_clone/src/features/auth/presentation/states/profile_selection/profile_selection_cubit.dart';
+import 'package:netflix_clone/src/features/auth/presentation/states/profiles/profiles_selector.dart';
 
 // Stateful navigation based on:
 // https://github.com/flutter/packages/blob/main/packages/go_router/example/lib/stateful_shell_route.dart
@@ -20,10 +20,6 @@ class ScaffoldWithNestedNavigation extends StatelessWidget {
   void _goBranch(int index) {
     navigationShell.goBranch(
       index,
-      // A common pattern when using bottom navigation bars is to support
-      // navigating to the initial location when tapping the item that is
-      // already active. This example demonstrates how to support this behavior,
-      // using the initialLocation parameter of goBranch.
       initialLocation: index == navigationShell.currentIndex,
     );
   }
@@ -85,101 +81,92 @@ class ScaffoldWithNavigationBar extends StatelessWidget {
       );
     }
 
-    return BlocConsumer<ProfileSelectionCubit, List<String>>(
-      listener: (context, state) {
-        // add function when profile is selected
-      },
-      builder: (context, selectedProfileImage) {
-        return Scaffold(
-          backgroundColor: context.appTheme.colors.backgroundDark,
-          body: CustomScrollView(
-            slivers: [
-              SliverAppBar(
-                backgroundColor: Colors.transparent,
-                pinned: true,
-                flexibleSpace: FlexibleSpaceBar(
-                  titlePadding: EdgeInsetsDirectional.only(
-                    start: Sizes.p16,
-                    bottom: Sizes.p16,
-                    top: currentIndex == 0 ? Sizes.p16 : 0,
-                  ),
-                  title: titleWidget,
-                ),
-                actions: [BuildActions(currentIndex: currentIndex)],
+    return Scaffold(
+      backgroundColor: context.appTheme.colors.backgroundDark,
+      body: CustomScrollView(
+        slivers: [
+          SliverAppBar(
+            backgroundColor: Colors.transparent,
+            pinned: true,
+            flexibleSpace: FlexibleSpaceBar(
+              titlePadding: EdgeInsetsDirectional.only(
+                start: Sizes.p16,
+                bottom: Sizes.p16,
+                top: currentIndex == 0 ? Sizes.p16 : 0,
               ),
-              SliverFillRemaining(
-                child: body,
-              ),
-            ],
+              title: titleWidget,
+            ),
+            actions: [BuildActions(currentIndex: currentIndex)],
           ),
-          bottomNavigationBar: NavigationBar(
-            backgroundColor: context.appTheme.colors.backgroundDark,
-            selectedIndex: currentIndex,
-            destinations: [
-              NavigationDestination(
-                icon: const Icon(
-                  Icons.home_outlined,
-                  size: Sizes.p24,
-                ),
-                selectedIcon: const Icon(
-                  Icons.home_filled,
-                  size: Sizes.p24,
-                ),
-                label: locale.home,
+          SliverFillRemaining(
+            child: body,
+          ),
+        ],
+      ),
+      bottomNavigationBar: NavigationBar(
+        backgroundColor: context.appTheme.colors.backgroundDark,
+        selectedIndex: currentIndex,
+        destinations: [
+          NavigationDestination(
+            icon: const Icon(
+              Icons.home_outlined,
+              size: Sizes.p24,
+            ),
+            selectedIcon: const Icon(
+              Icons.home_filled,
+              size: Sizes.p24,
+            ),
+            label: locale.home,
+          ),
+          NavigationDestination(
+            icon: const Icon(
+              Icons.gamepad_outlined,
+              size: Sizes.p24,
+            ),
+            selectedIcon: const Icon(
+              Icons.games,
+              size: Sizes.p24,
+            ),
+            label: locale.games,
+          ),
+          NavigationDestination(
+            icon: const Icon(
+              Icons.movie_filter_outlined,
+              size: Sizes.p24,
+            ),
+            selectedIcon: const Icon(
+              Icons.movie_filter,
+              size: Sizes.p24,
+            ),
+            label: locale.newAndHot,
+          ),
+          CurrentProfilesSelector((profile) {
+            return NavigationDestination(
+              icon: Image.asset(
+                profile.image ?? Assets.images.netflixProfile1.path,
+                width: Sizes.p24,
+                height: Sizes.p24,
               ),
-              NavigationDestination(
-                icon: const Icon(
-                  Icons.gamepad_outlined,
-                  size: Sizes.p24,
+              selectedIcon: Container(
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(Sizes.p4).r,
+                  border: Border.all(
+                    color: context.appTheme.colors.textOnPrimary,
+                    width: 1.w,
+                  ),
                 ),
-                selectedIcon: const Icon(
-                  Icons.games,
-                  size: Sizes.p24,
-                ),
-                label: locale.games,
-              ),
-              NavigationDestination(
-                icon: const Icon(
-                  Icons.movie_filter_outlined,
-                  size: Sizes.p24,
-                ),
-                selectedIcon: const Icon(
-                  Icons.movie_filter,
-                  size: Sizes.p24,
-                ),
-                label: locale.newAndHot,
-              ),
-              NavigationDestination(
-                icon: Image.asset(
-                  selectedProfileImage.isNotEmpty
-                      ? selectedProfileImage[0]
-                      : 'assets/images/profiles/profile_1.png',
+                child: Image.asset(
+                  profile.image ?? Assets.images.netflixProfile1.path,
                   width: Sizes.p24,
                   height: Sizes.p24,
                 ),
-                selectedIcon: Container(
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(Sizes.p4).r,
-                    border: Border.all(
-                      color: context.appTheme.colors.textOnPrimary,
-                      width: 1.w,
-                    ),
-                  ),
-                  child: Image.asset(
-                    selectedProfileImage.isNotEmpty
-                        ? selectedProfileImage[0]
-                        : 'assets/images/profiles/profile_1.png',
-                    width: Sizes.p24,
-                    height: Sizes.p24,
-                  ),
-                ),
-                label: locale.myNetflix,
               ),
-            ],
-            onDestinationSelected: onDestinationSelected,
-          ),
-        );
-      },
+              label: locale.myNetflix,
+            );
+          }),
+        ],
+        onDestinationSelected: onDestinationSelected,
+      ),
     );
   }
 }
