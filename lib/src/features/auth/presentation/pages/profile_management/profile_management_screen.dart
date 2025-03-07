@@ -5,7 +5,7 @@ import 'package:netflix_clone/src/core/config/constants/app_sizes.dart';
 import 'package:netflix_clone/src/core/l10n/l10n.dart';
 import 'package:netflix_clone/src/core/theme/colors.dart';
 import 'package:netflix_clone/src/core/theme/extensions.dart';
-import 'package:netflix_clone/src/core/widgets/modal/profile_selection_modal.dart';
+import 'package:netflix_clone/src/presenter/widgets/modal/profile_selection_modal.dart';
 import 'package:netflix_clone/src/features/auth/presentation/states/profiles/profiles_selector.dart';
 import 'package:netflix_clone/src/features/auth/presentation/widgets/profile_management/profile_action_card.dart';
 
@@ -65,7 +65,7 @@ class ProfileManagementScreen extends StatelessWidget {
                 IconButton(
                   onPressed: showProfileModal,
                   icon: SvgPicture.asset(
-                    Assets.images.netflixProfile1.path,
+                    Assets.svgs.statMinus1,
                     height: size.height * 0.03,
                   ),
                 ),

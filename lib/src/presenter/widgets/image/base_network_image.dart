@@ -1,7 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:netflix_clone/src/core/config/constants/image_constants.dart';
-import 'package:netflix_clone/src/core/widgets/indicator/base_indicator.dart';
+import 'package:netflix_clone/src/presenter/widgets/indicator/base_indicator.dart';
 
 class BaseNetworkImage extends StatelessWidget {
   const BaseNetworkImage(this.url, {super.key, this.hasRadius = true});

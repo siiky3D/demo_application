@@ -8,20 +8,20 @@ import 'package:netflix_clone/src/core/config/constants/app_sizes.dart';
 import 'package:netflix_clone/src/core/config/routes/app_router.dart';
 import 'package:netflix_clone/src/core/l10n/l10n.dart';
 import 'package:netflix_clone/src/core/theme/extensions.dart';
-import 'package:netflix_clone/src/core/widgets/buttons/primary_button.dart';
-import 'package:netflix_clone/src/core/widgets/card/movie_card.dart';
-import 'package:netflix_clone/src/core/widgets/image/movie_image.dart';
-import 'package:netflix_clone/src/core/widgets/list/movie_list.dart';
-import 'package:netflix_clone/src/core/widgets/shimmer/shimmer.dart';
 import 'package:netflix_clone/src/features/movies/domain/entities/movie_detail/movie_detail_entity.dart';
 import 'package:netflix_clone/src/features/movies/domain/entities/movie_listings/movie_listings_entity.dart';
 import 'package:netflix_clone/src/features/movies/presentation/states/export_movie_blocs.dart';
+import 'package:netflix_clone/src/presenter/widgets/buttons/primary_button.dart';
+import 'package:netflix_clone/src/presenter/widgets/card/movie_card.dart';
+import 'package:netflix_clone/src/presenter/widgets/image/movie_image.dart';
+import 'package:netflix_clone/src/presenter/widgets/list/movie_list.dart';
+import 'package:netflix_clone/src/presenter/widgets/shimmer/shimmer.dart';
 
 part '../../widgets/movies/card/top_ranked_movie_card.dart';
+part '../../widgets/movies/list/now_playing_movies_list.dart';
 part '../../widgets/movies/list/popular_movies_list.dart';
 part '../../widgets/movies/list/top_rated_movies_list.dart';
 part '../../widgets/movies/list/upcoming_movies_list.dart';
-part '../../widgets/movies/list/now_playing_movies_list.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});

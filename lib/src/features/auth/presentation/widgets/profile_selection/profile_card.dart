@@ -3,13 +3,14 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:netflix_clone/src/core/config/constants/app_sizes.dart';
 import 'package:netflix_clone/src/core/theme/colors.dart';
 import 'package:netflix_clone/src/core/theme/extensions.dart';
-import 'package:netflix_clone/src/core/widgets/image/profile_image.dart';
 import 'package:netflix_clone/src/features/auth/domain/entities/export_entities.dart';
+import 'package:netflix_clone/src/presenter/widgets/image/profile_image.dart';
 
 class ProfileCard extends StatelessWidget {
   const ProfileCard(
     this.profile, {
     required this.size,
+    this.margin = const EdgeInsets.only(right: 8),
     this.onPress,
     super.key,
   });
@@ -17,6 +18,7 @@ class ProfileCard extends StatelessWidget {
   final ProfileDetailEntity profile;
   final void Function()? onPress;
   final Size size;
+  final EdgeInsetsGeometry margin;
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +28,7 @@ class ProfileCard extends StatelessWidget {
         Container(
           width: size.width.w,
           height: size.height.h,
-          margin: const EdgeInsets.only(right: 8).w,
+          margin: margin,
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(8),
           ),

@@ -1,9 +1,9 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:netflix_clone/src/core/config/constants/const.dart';
-import 'package:netflix_clone/src/core/widgets/indicator/base_indicator.dart';
-import 'package:netflix_clone/src/core/widgets/shimmer/shimmer.dart';
 import 'package:netflix_clone/src/features/movies/domain/entities/movie_detail/movie_detail_entity.dart';
+import 'package:netflix_clone/src/presenter/widgets/indicator/base_indicator.dart';
+import 'package:netflix_clone/src/presenter/widgets/shimmer/shimmer.dart';
 
 class MovieImage extends StatelessWidget {
   const MovieImage({

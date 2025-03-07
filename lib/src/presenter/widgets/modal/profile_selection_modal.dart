@@ -7,7 +7,7 @@ import 'package:netflix_clone/src/core/config/routes/app_router.dart';
 import 'package:netflix_clone/src/core/l10n/l10n.dart';
 import 'package:netflix_clone/src/core/theme/colors.dart';
 import 'package:netflix_clone/src/core/theme/extensions.dart';
-import 'package:netflix_clone/src/core/widgets/modal/modal.dart';
+import 'package:netflix_clone/src/presenter/widgets/modal/modal.dart';
 import 'package:netflix_clone/src/features/auth/domain/entities/profile_detail/profile_detail.dart';
 import 'package:netflix_clone/src/features/auth/presentation/states/profiles/profiles_bloc.dart';
 import 'package:netflix_clone/src/features/auth/presentation/states/profiles/profiles_selector.dart';
@@ -17,7 +17,11 @@ class ProfileSelectionModal extends StatelessWidget {
   const ProfileSelectionModal({super.key});
 
   Widget _buildProfileSelectionCard(ProfileDetailEntity profiles, Size size) {
-    return ProfileCard(profiles, size: const Size(30, 30));
+    return ProfileCard(
+      profiles,
+      size: const Size(60, 60),
+      margin: const EdgeInsets.only(right: 12),
+    );
   }
 
   Widget _buildListProfiles(BuildContext context) {

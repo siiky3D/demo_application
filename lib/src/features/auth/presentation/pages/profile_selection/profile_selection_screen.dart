@@ -7,7 +7,7 @@ import 'package:netflix_clone/src/core/config/constants/const.dart';
 import 'package:netflix_clone/src/core/config/routes/app_router.dart';
 import 'package:netflix_clone/src/core/l10n/l10n.dart';
 import 'package:netflix_clone/src/core/theme/extensions.dart';
-import 'package:netflix_clone/src/core/widgets/indicator/base_indicator.dart';
+import 'package:netflix_clone/src/presenter/widgets/indicator/base_indicator.dart';
 import 'package:netflix_clone/src/features/auth/domain/entities/export_entities.dart';
 import 'package:netflix_clone/src/features/auth/presentation/states/profiles/profiles_bloc.dart';
 import 'package:netflix_clone/src/features/auth/presentation/states/profiles/profiles_selector.dart';
@@ -26,7 +26,7 @@ class ProfileSelectionScreen extends StatelessWidget {
     Widget buildProfileSelectionCard(ProfileDetailEntity profiles, Size size) {
       return ProfileCard(
         profiles,
-        size: const Size(30, 30),
+        size: const Size(90, 80),
       );
     }
 
@@ -83,8 +83,9 @@ class ProfileSelectionScreen extends StatelessWidget {
   ) {
     return Center(
       child: Column(
-        mainAxisSize: MainAxisSize.min,
         children: [
+          //TODO: delete spacer later
+          const Spacer(),
           Text(
             locale.selectProfile,
             style: context.typographies.bodyExtraLarge,
@@ -116,6 +117,7 @@ class ProfileSelectionScreen extends StatelessWidget {
               ),
             );
           }),
+          const Spacer(flex: 2),
         ],
       ),
     );
