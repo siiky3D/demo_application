@@ -1,8 +1,8 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:netflix_clone/src/domain/entities/auth/profile_details_entity.dart';
 import 'package:netflix_clone/src/presenter/widgets/indicator/base_indicator.dart';
 import 'package:netflix_clone/src/presenter/widgets/shimmer/shimmer.dart';
-import 'package:netflix_clone/src/features/auth/domain/entities/export_entities.dart';
 
 class ProfileImage extends StatelessWidget {
   const ProfileImage({

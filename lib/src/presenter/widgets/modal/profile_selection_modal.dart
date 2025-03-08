@@ -8,10 +8,10 @@ import 'package:netflix_clone/src/core/l10n/l10n.dart';
 import 'package:netflix_clone/src/core/theme/colors.dart';
 import 'package:netflix_clone/src/core/theme/extensions.dart';
 import 'package:netflix_clone/src/presenter/widgets/modal/modal.dart';
-import 'package:netflix_clone/src/features/auth/domain/entities/profile_detail/profile_detail.dart';
-import 'package:netflix_clone/src/features/auth/presentation/states/profiles/profiles_bloc.dart';
-import 'package:netflix_clone/src/features/auth/presentation/states/profiles/profiles_selector.dart';
-import 'package:netflix_clone/src/features/auth/presentation/widgets/profile_selection/profile_card.dart';
+import 'package:netflix_clone/src/domain/entities/auth/profile_details_entity.dart';
+import 'package:netflix_clone/src/presenter/blocs/auth/profiles_bloc.dart';
+import 'package:netflix_clone/src/presenter/blocs/auth/profiles_selector.dart';
+import 'package:netflix_clone/src/presenter/screens/auth/widgets/profile_card.dart';
 
 class ProfileSelectionModal extends StatelessWidget {
   const ProfileSelectionModal({super.key});

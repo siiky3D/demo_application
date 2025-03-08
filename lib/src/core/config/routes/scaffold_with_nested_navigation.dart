@@ -6,7 +6,7 @@ import 'package:netflix_clone/gen/assets.gen.dart';
 import 'package:netflix_clone/src/core/config/constants/app_sizes.dart';
 import 'package:netflix_clone/src/core/l10n/l10n.dart';
 import 'package:netflix_clone/src/core/theme/extensions.dart';
-import 'package:netflix_clone/src/features/auth/presentation/states/profiles/profiles_selector.dart';
+import 'package:netflix_clone/src/presenter/blocs/auth/profiles_selector.dart';
 
 // Stateful navigation based on:
 // https://github.com/flutter/packages/blob/main/packages/go_router/example/lib/stateful_shell_route.dart

@@ -3,13 +3,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
 import 'package:injectable/injectable.dart';
-
 import 'package:netflix_clone/injector.config.dart';
 import 'package:netflix_clone/src/core/theme/bloc/themes_bloc.dart';
-import 'package:netflix_clone/src/features/auth/presentation/states/auth/authentication_bloc.dart';
-import 'package:netflix_clone/src/features/auth/presentation/states/profiles/profiles_bloc.dart';
-import 'package:netflix_clone/src/features/movies/presentation/states/export_movie_blocs.dart';
-import 'package:netflix_clone/src/features/onboarding/presentation/cubit/onboarding_cubit.dart';
+import 'package:netflix_clone/src/presenter/blocs/auth/authentication_bloc.dart';
+import 'package:netflix_clone/src/presenter/blocs/auth/profiles_bloc.dart';
+import 'package:netflix_clone/src/presenter/blocs/movie/movies_bloc.dart';
+import 'package:netflix_clone/src/presenter/blocs/onboarding/onboarding_cubit.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 final injector = GetIt.instance;

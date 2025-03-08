@@ -15,46 +15,56 @@ import 'package:netflix_clone/injector.dart' as _i172;
 import 'package:netflix_clone/src/core/database/local_database.dart' as _i699;
 import 'package:netflix_clone/src/core/network/dio_client.dart' as _i520;
 import 'package:netflix_clone/src/core/theme/bloc/themes_bloc.dart' as _i224;
-import 'package:netflix_clone/src/features/auth/data/data_sources/remote/profile_remote_data_source.dart'
-    as _i956;
-import 'package:netflix_clone/src/features/auth/data/data_sources/remote/profile_remote_data_source_impl.dart'
-    as _i62;
-import 'package:netflix_clone/src/features/auth/domain/repositories/auth/authentication_repository.dart'
-    as _i263;
-import 'package:netflix_clone/src/features/auth/domain/repositories/user/user_repository.dart'
-    as _i259;
-import 'package:netflix_clone/src/features/auth/domain/usecases/profile/profile_usecases.dart'
+import 'package:netflix_clone/src/data/data_sources/local/movie/movie_local_data_source.dart'
+    as _i939;
+import 'package:netflix_clone/src/data/data_sources/local/movie/movie_local_data_source_impl.dart'
+    as _i89;
+import 'package:netflix_clone/src/data/data_sources/remote/actor/actor_remote_data_source.dart'
+    as _i1044;
+import 'package:netflix_clone/src/data/data_sources/remote/actor/actor_remote_data_source_impl.dart'
+    as _i175;
+import 'package:netflix_clone/src/data/data_sources/remote/auth/profile_remote_data_source.dart'
+    as _i1014;
+import 'package:netflix_clone/src/data/data_sources/remote/auth/profile_remote_data_source_impl.dart'
+    as _i120;
+import 'package:netflix_clone/src/data/data_sources/remote/movie/movie_remote_data_source.dart'
     as _i914;
-import 'package:netflix_clone/src/features/auth/domain/usecases/profile/profile_usecases_impl.dart'
-    as _i18;
-import 'package:netflix_clone/src/features/auth/presentation/states/auth/authentication_bloc.dart'
-    as _i232;
-import 'package:netflix_clone/src/features/auth/presentation/states/login/login_bloc.dart'
-    as _i486;
-import 'package:netflix_clone/src/features/auth/presentation/states/profiles/profiles_bloc.dart'
-    as _i161;
-import 'package:netflix_clone/src/features/movies/data/data_sources/local/movie/movie_local_data_source.dart'
-    as _i35;
-import 'package:netflix_clone/src/features/movies/data/data_sources/local/movie/movie_local_data_source_impl.dart'
-    as _i209;
-import 'package:netflix_clone/src/features/movies/data/data_sources/remote/movie_remote_data_source.dart'
-    as _i677;
-import 'package:netflix_clone/src/features/movies/data/data_sources/remote/movie_remote_data_source_impl.dart'
-    as _i675;
-import 'package:netflix_clone/src/features/movies/data/repositories/movie/movie_repository_impl.dart'
-    as _i918;
-import 'package:netflix_clone/src/features/movies/domain/repositories/movie/movie_repository.dart'
-    as _i796;
-import 'package:netflix_clone/src/features/movies/domain/usecases/movie/movie_usecases.dart'
-    as _i483;
-import 'package:netflix_clone/src/features/movies/domain/usecases/movie/movie_usecases_impl.dart'
-    as _i365;
-import 'package:netflix_clone/src/features/movies/presentation/states/movie/movies_bloc.dart'
-    as _i37;
-import 'package:netflix_clone/src/features/onboarding/data/repositories/onboarding_repository.dart'
-    as _i196;
-import 'package:netflix_clone/src/features/onboarding/presentation/cubit/onboarding_cubit.dart'
-    as _i300;
+import 'package:netflix_clone/src/data/data_sources/remote/movie/movie_remote_data_source_impl.dart'
+    as _i974;
+import 'package:netflix_clone/src/data/repositories/actor/actor_repository_impl.dart'
+    as _i158;
+import 'package:netflix_clone/src/data/repositories/movie/movie_repository_impl.dart'
+    as _i1067;
+import 'package:netflix_clone/src/data/repositories/onboarding/onboarding_repository.dart'
+    as _i778;
+import 'package:netflix_clone/src/domain/repositories/actor/actor_repository.dart'
+    as _i605;
+import 'package:netflix_clone/src/domain/repositories/auth/authentication_repository.dart'
+    as _i318;
+import 'package:netflix_clone/src/domain/repositories/auth/user_repository.dart'
+    as _i367;
+import 'package:netflix_clone/src/domain/repositories/movie/movie_repository.dart'
+    as _i149;
+import 'package:netflix_clone/src/domain/usecases/actor/actor_usecases.dart'
+    as _i411;
+import 'package:netflix_clone/src/domain/usecases/auth/profile_usecases.dart'
+    as _i1030;
+import 'package:netflix_clone/src/domain/usecases/auth/profile_usecases_impl.dart'
+    as _i188;
+import 'package:netflix_clone/src/domain/usecases/movie/movie_usecases.dart'
+    as _i375;
+import 'package:netflix_clone/src/domain/usecases/movie/movie_usecases_impl.dart'
+    as _i748;
+import 'package:netflix_clone/src/presenter/blocs/auth/authentication_bloc.dart'
+    as _i509;
+import 'package:netflix_clone/src/presenter/blocs/auth/login_bloc.dart'
+    as _i846;
+import 'package:netflix_clone/src/presenter/blocs/auth/profiles_bloc.dart'
+    as _i606;
+import 'package:netflix_clone/src/presenter/blocs/movie/movies_bloc.dart'
+    as _i30;
+import 'package:netflix_clone/src/presenter/blocs/onboarding/onboarding_cubit.dart'
+    as _i417;
 import 'package:shared_preferences/shared_preferences.dart' as _i460;
 
 extension GetItInjectableX on _i174.GetIt {
@@ -78,36 +88,42 @@ extension GetItInjectableX on _i174.GetIt {
     gh.singleton<_i520.DioClient>(() => _i520.DioClient());
     gh.lazySingleton<_i699.LocalDatabase>(() => _i699.LocalDatabase());
     gh.lazySingleton<_i224.ThemesBloc>(() => _i224.ThemesBloc());
-    gh.lazySingleton<_i263.AuthenticationRepository>(
-        () => _i263.AuthenticationRepository());
-    gh.lazySingleton<_i259.UserRepository>(() => _i259.UserRepository());
-    gh.lazySingleton<_i956.ProfileRemoteDataSource>(
-        () => _i62.ProfileRemoteDataSourceImpl(gh<_i520.DioClient>()));
-    gh.lazySingleton<_i35.MovieLocalDataSource>(
-        () => _i209.MovieLocalDataSourceImpl(gh<_i699.LocalDatabase>()));
-    gh.lazySingleton<_i914.ProfileUsecases>(() => _i18.ProfileUsecasesImpl());
-    gh.lazySingleton<_i677.MovieRemoteDataSource>(
-        () => _i675.MovieRemoteDataSourceImpl(gh<_i520.DioClient>()));
-    gh.lazySingleton<_i196.OnboardingRepository>(
-        () => _i196.OnboardingRepository(gh<_i460.SharedPreferences>()));
-    gh.lazySingleton<_i232.AuthenticationBloc>(() => _i232.AuthenticationBloc(
-          authenticationRepository: gh<_i263.AuthenticationRepository>(),
-          userRepository: gh<_i259.UserRepository>(),
+    gh.lazySingleton<_i318.AuthenticationRepository>(
+        () => _i318.AuthenticationRepository());
+    gh.lazySingleton<_i367.UserRepository>(() => _i367.UserRepository());
+    gh.lazySingleton<_i914.MovieRemoteDataSource>(
+        () => _i974.MovieRemoteDataSourceImpl(gh<_i520.DioClient>()));
+    gh.lazySingleton<_i1044.ActorRemoteDataSource>(
+        () => _i175.ActorRemoteDataSourceImpl(gh<_i520.DioClient>()));
+    gh.lazySingleton<_i939.MovieLocalDataSource>(
+        () => _i89.MovieLocalDataSourceImpl(gh<_i699.LocalDatabase>()));
+    gh.lazySingleton<_i1014.ProfileRemoteDataSource>(
+        () => _i120.ProfileRemoteDataSourceImpl(gh<_i520.DioClient>()));
+    gh.lazySingleton<_i846.LoginBloc>(() => _i846.LoginBloc(
+        authenticationRepository: gh<_i318.AuthenticationRepository>()));
+    gh.lazySingleton<_i1030.ProfileUsecases>(() => _i188.ProfileUsecasesImpl());
+    gh.lazySingleton<_i509.AuthenticationBloc>(() => _i509.AuthenticationBloc(
+          authenticationRepository: gh<_i318.AuthenticationRepository>(),
+          userRepository: gh<_i367.UserRepository>(),
         ));
-    gh.lazySingleton<_i486.LoginBloc>(() => _i486.LoginBloc(
-        authenticationRepository: gh<_i263.AuthenticationRepository>()));
-    gh.lazySingleton<_i300.OnboardingCubit>(
-        () => _i300.OnboardingCubit(gh<_i196.OnboardingRepository>()));
-    gh.lazySingleton<_i161.ProfilesBloc>(
-        () => _i161.ProfilesBloc(gh<_i914.ProfileUsecases>()));
-    gh.lazySingleton<_i796.MovieRepository>(() => _i918.MovieRepositoryImpl(
-          gh<_i677.MovieRemoteDataSource>(),
-          gh<_i35.MovieLocalDataSource>(),
+    gh.lazySingleton<_i778.OnboardingRepository>(
+        () => _i778.OnboardingRepository(gh<_i460.SharedPreferences>()));
+    gh.lazySingleton<_i605.ActorRepository>(
+        () => _i158.ActorRepositoryImpl(gh<_i1044.ActorRemoteDataSource>()));
+    gh.lazySingleton<_i411.ActorUsecases>(
+        () => _i411.ActorUsecases(gh<_i605.ActorRepository>()));
+    gh.lazySingleton<_i606.ProfilesBloc>(
+        () => _i606.ProfilesBloc(gh<_i1030.ProfileUsecases>()));
+    gh.lazySingleton<_i149.MovieRepository>(() => _i1067.MovieRepositoryImpl(
+          gh<_i914.MovieRemoteDataSource>(),
+          gh<_i939.MovieLocalDataSource>(),
         ));
-    gh.lazySingleton<_i483.MovieUsecases>(
-        () => _i365.MovieUsecasesImpl(gh<_i796.MovieRepository>()));
-    gh.lazySingleton<_i37.MoviesBloc>(
-        () => _i37.MoviesBloc(gh<_i483.MovieUsecases>()));
+    gh.lazySingleton<_i375.MovieUsecases>(
+        () => _i748.MovieUsecasesImpl(gh<_i149.MovieRepository>()));
+    gh.lazySingleton<_i417.OnboardingCubit>(
+        () => _i417.OnboardingCubit(gh<_i778.OnboardingRepository>()));
+    gh.lazySingleton<_i30.MoviesBloc>(
+        () => _i30.MoviesBloc(gh<_i375.MovieUsecases>()));
     return this;
   }
 }

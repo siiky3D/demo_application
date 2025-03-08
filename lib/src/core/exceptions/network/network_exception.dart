@@ -4,27 +4,6 @@ import 'package:dio/dio.dart';
 import 'package:equatable/equatable.dart';
 import 'package:netflix_clone/src/core/network/model/error_model.dart';
 
-///
-/// This class extends [Equatable] and implements [Exception].
-/// It contains a [message] and a [statusCode] property.
-/// The [message] property contains the error message and the [statusCode]
-/// property contains the HTTP status code of the response.
-///
-/// This class has a constructor [fromDioError] which takes a [DioException]
-/// as a parameter and sets the [statusCode] and [message] properties based on
-/// the type of the [DioException].
-///
-/// This class also overrides the [props] getter from [Equatable] to compare
-/// instances of this class based on the [message] and [statusCode] properties.
-///
-/// Example usage:
-/// ```dart
-/// try {
-///   // some network request
-/// } on DioException catch (e) {
-///   throw NetworkException.fromDioError(e);
-/// }
-/// ```
 class NetworkException extends Equatable implements Exception {
   NetworkException.fromDioError(DioException dioException) {
     statusCode = dioException.response?.statusCode;

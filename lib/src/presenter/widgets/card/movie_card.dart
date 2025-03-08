@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:netflix_clone/gen/assets.gen.dart';
+import 'package:netflix_clone/src/domain/entities/movie/movie_detail_entity.dart';
 import 'package:netflix_clone/src/presenter/widgets/image/movie_image.dart';
-import 'package:netflix_clone/src/features/movies/domain/entities/movie_detail/movie_detail_entity.dart';
 
 class MovieCard extends StatelessWidget {
   const MovieCard(

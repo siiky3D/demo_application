@@ -1,4 +1,4 @@
-import 'package:netflix_clone/src/features/auth/domain/entities/profile_detail/profile_detail.dart';
+import 'package:netflix_clone/src/domain/entities/auth/profile_details_entity.dart';
 
 const imageUrl = 'https://image.tmdb.org/t/p/w500';
 

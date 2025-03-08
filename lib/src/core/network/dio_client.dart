@@ -6,7 +6,10 @@ import 'package:dio_cache_interceptor/dio_cache_interceptor.dart';
 import 'package:flutter/widgets.dart';
 import 'package:injectable/injectable.dart';
 import 'package:netflix_clone/env/env.dart';
-import 'package:netflix_clone/src/core/network/api_client.dart';
+import 'package:netflix_clone/src/core/network/api/actort_api.dart';
+import 'package:netflix_clone/src/core/network/api/movie_api.dart';
+import 'package:netflix_clone/src/core/network/api/search_api.dart';
+import 'package:netflix_clone/src/core/network/api/tv_series_api.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 
 @singleton
@@ -17,11 +20,17 @@ class DioClient {
     _configureDio();
     _configureInterceptors();
 
-    apiClient = ApiClient(_dio);
+    movieApiClient = MovieApi(_dio);
+    searchApiClient = SearchApi(_dio);
+    tvSeriesApiClient = TvSeriesApi(_dio);
+    actorApiClient = ActorApi(_dio);
   }
 
   late final Dio _dio;
-  late final ApiClient apiClient;
+  late final MovieApi movieApiClient;
+  late final SearchApi searchApiClient;
+  late final TvSeriesApi tvSeriesApiClient;
+  late final ActorApi actorApiClient;
 
   void _configureDio() {
     _dio.options.baseUrl = Env.tmdbBaseUrl;

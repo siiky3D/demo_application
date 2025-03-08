@@ -4,20 +4,20 @@ import 'package:go_router/go_router.dart';
 import 'package:netflix_clone/src/core/config/routes/go_router_refresh_stream.dart';
 import 'package:netflix_clone/src/core/config/routes/not_found_screen.dart';
 import 'package:netflix_clone/src/core/config/routes/scaffold_with_nested_navigation.dart';
-import 'package:netflix_clone/src/features/auth/domain/repositories/auth/authentication_repository.dart';
-import 'package:netflix_clone/src/features/auth/presentation/pages/login/login_screen.dart';
-import 'package:netflix_clone/src/features/auth/presentation/pages/profile_management/profile_management_screen.dart';
-import 'package:netflix_clone/src/features/auth/presentation/pages/profile_selection/profile_selection_screen.dart';
-import 'package:netflix_clone/src/features/auth/presentation/states/auth/authentication_bloc.dart';
-import 'package:netflix_clone/src/features/auth/presentation/states/profiles/profiles_bloc.dart';
-import 'package:netflix_clone/src/features/games/presentation/pages/game_screen.dart';
-import 'package:netflix_clone/src/features/movies/domain/entities/movie_detail/movie_detail_entity.dart';
-import 'package:netflix_clone/src/features/movies/presentation/pages/home/home_screen.dart';
-import 'package:netflix_clone/src/features/movies/presentation/pages/movie_detail_screen.dart';
-import 'package:netflix_clone/src/features/movies/presentation/pages/new_and_hot_screen.dart';
-import 'package:netflix_clone/src/features/onboarding/presentation/cubit/onboarding_cubit.dart';
-import 'package:netflix_clone/src/features/onboarding/presentation/pages/onboarding_screen.dart';
-import 'package:netflix_clone/src/features/splash/presentation/pages/splash_screen.dart';
+import 'package:netflix_clone/src/domain/entities/movie/movie_detail_entity.dart';
+import 'package:netflix_clone/src/domain/repositories/auth/authentication_repository.dart';
+import 'package:netflix_clone/src/presenter/blocs/auth/authentication_bloc.dart';
+import 'package:netflix_clone/src/presenter/blocs/auth/profiles_bloc.dart';
+import 'package:netflix_clone/src/presenter/blocs/onboarding/onboarding_cubit.dart';
+import 'package:netflix_clone/src/presenter/screens/auth/login_screen.dart';
+import 'package:netflix_clone/src/presenter/screens/auth/profile_management_screen.dart';
+import 'package:netflix_clone/src/presenter/screens/auth/profile_selection_screen.dart';
+import 'package:netflix_clone/src/presenter/screens/game/game_screen.dart';
+import 'package:netflix_clone/src/presenter/screens/movie/home_screen.dart';
+import 'package:netflix_clone/src/presenter/screens/movie/movie_detail_screen.dart';
+import 'package:netflix_clone/src/presenter/screens/movie/new_and_hot_screen.dart';
+import 'package:netflix_clone/src/presenter/screens/onboarding/onboarding_screen.dart';
+import 'package:netflix_clone/src/presenter/screens/splash/splash_screen.dart';
 
 /// All the supported routes in the app.
 /// By using an enum, we route by name using this syntax:
